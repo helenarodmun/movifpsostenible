@@ -1,66 +1,45 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Inicialización del proyecto
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+- Configuramos la plantilla de partida que se nos ha proporcionado para el proyecto. 
+    - Configuración de la DB en el archivo .env con nombre movifp
 
-## About Laravel
+`composer require`
+- El comando composer requirese utiliza para instalar un paquete o una dependencia en un proyecto PHP utilizando el gestor de paquetes Composer. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+`npm install`
+- instala los paquetes y dependencias de un proyecto JavaScript utilizando Node Package Manager (NPM)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+`artisan key generate`
+- Se utiliza para generar una nueva clave de aplicación. Esta clave es utilizada por Laravel para cifrar y desencriptar los datos de sesión y cookies, entre otras cosas.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Creación de la base de datso
 
-## Learning Laravel
+- Se ha generado con Workbench el modelo correspondiente a la base de datos necesaria. En principo las 4 primeras tablas.
+- Para poder convertir el modelo en migraciones para Laravel hay que descargarse un plugin que podemos encontrar en: https://github.com/beckenrode/mysql-workbench-export-laravel-5-migrations#version
+- Se han actualizado los archivos generados para Laravel 9, ya que Workbench los realiza con Laravel 5
+`php artisan migrate:refresh`
+- para migrar las tablas
+`php artisan make:controller XXXXX --model=XXXXX`
+- para generar los modelos y controladores que se van a necesitar
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Instalación de React
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+`composer require laravel/ui`
+- (este paso sólo es necesario si no lo hemos instalado previamente pero la plantilla ya lo trae instalado. En caso contrario habría que hacer este paso)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+`artisan ui react --auth`
+- genera vistas de autenticación preconfiguradas. Estas vistas se crean en la carpeta resources/js/components/Auth, también agrega las rutas y controladores necesarios para manejar la autenticación en la aplicación Laravel
+- Si da error con vite edita el fichero pacake.json y en la entrada vite pon vite:"*". Vuelve a ejecutar el comando anterior
 
-## Laravel Sponsors
+`npm run dev`
+- El comando npm run devse utiliza en un proyecto de JavaScript para compilar los activos y archivos fuente.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Instalación de Inertis
+`composer require inertiajs/inertia-laravel`
 
-### Premium Partners
+`php artisan inertia:middleware`
+- Configura el middleware de inertia
+- En el archivo App\Http\Kernel incluye en la última posición del array asociativo 'web' lo siguiente: \App\Http\Middleware\HandleInertiaRequests::class,
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+`npm install @inertiajs/react`
+Instala el paquete de Inertia. Si obtienes algún error por problemas de versiones de vite utiliza la opción --force, por ejemplo: npm install @inertiajs/react --force
