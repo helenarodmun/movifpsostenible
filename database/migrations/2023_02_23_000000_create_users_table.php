@@ -1,54 +1,31 @@
 <?php
-
 namespace Database\Migrations;
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
 {
-    /**
-     * Schema table name to migrate
-     * @var string
-     */
-    public $tableName = 'users';
-
-    /**
-     * Run the migrations.
-     * @table users
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create($this->tableName, function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('idusers');
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
             $table->string('name', 45);
-            $table->string('email', 45);
+            $table->string('email', 45)->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password', 45);
-            $table->tinyInteger('admin')->nullable();
-            $table->tinyInteger('blocked')->nullable();
-            $table->tinyInteger('validated')->nullable();
-            $table->double('coupon')->nullable();
-            $table->string('remember_token')->nullable();
-
-            $table->unique(["idusers"], 'idusers_UNIQUE');
-
-            $table->unique(["email"], 'email_UNIQUE');
-            $table->nullableTimestamps();
+            $table->string('password', 255);
+            $table->boolean('admin')->nullable();
+            $table->boolean('blocked')->nullable();
+            $table->boolean('validated')->nullable();
+            $table->decimal('coupon')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists($this->tableName);
+        Schema::dropIfExists('users');
     }
 }

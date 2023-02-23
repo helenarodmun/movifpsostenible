@@ -2,45 +2,28 @@
 
 namespace Database\Migrations;
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTravelsTable extends Migration
 {
     /**
-     * Schema table name to migrate
-     * @var string
-     */
-    public $tableName = 'travels';
-
-    /**
      * Run the migrations.
-     * @table travels
      *
      * @return void
      */
     public function up()
     {
-        Schema::create($this->tableName, function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('idtravels');
+        Schema::create('travels', function (Blueprint $table) {
+            $table->id();
             $table->string('origin', 45)->nullable();
             $table->string('destination', 45)->nullable();
             $table->date('date')->nullable();
             $table->time('hour')->nullable();
             $table->tinyInteger('seats')->nullable();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('update_at')->nullable();
-            $table->integer('idusers');
-
-            $table->index(["idusers"], 'fk_travels_users_idx');
-
-
-            $table->foreign('idusers', 'fk_travels_users_idx')
-                ->references('idusers')->on('users')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+            $table->timestamps();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         });
     }
 
@@ -51,6 +34,6 @@ class CreateTravelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists($this->tableName);
+        Schema::dropIfExists('travels');
     }
 }
