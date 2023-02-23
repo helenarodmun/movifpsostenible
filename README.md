@@ -43,3 +43,13 @@
 
 `npm install @inertiajs/react`
 Instala el paquete de Inertia. Si obtienes algún error por problemas de versiones de vite utiliza la opción --force, por ejemplo: npm install @inertiajs/react --force
+
+## Factory
+
+- rellenamos los campos de la tabla Travel de forma automática para poder empezar a visualizar datos
+`php artisan make:factory TravelFactory --model=Travel`
+- Se declaran en el modelo los datos como fillable
+- Se añaden los campos que se rellenen en el método definition de la clase TravelFactory y añadimos en el método run de la clase DatabaseSeeder
+
+`artisan db:seed`
+- Se ejecuta el método run de la clase DatabaseSeeder para inicializar la base de datos

@@ -1,9 +1,11 @@
 <?php
 
+
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\HandleInertiaRequests;
+use Inertia\Inertia;
+use App\Http\Controllers\TravelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +30,8 @@ Route::get('/welcomereact', function () {
     $user->name = "Mr. Bean";
     return Inertia::render('Welcome', ['user' => $user]);
     });
-
+    //a función name se utiliza para darle un nombre a la ruta, lo que permite hacer referencia a ella desde otras partes del código utilizando el nombre en lugar de la URL
+    Route::get('/travels', [TravelController::class, 'index'])->name('travels.index');
 
 
 

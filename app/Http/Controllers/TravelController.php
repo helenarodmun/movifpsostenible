@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Travel;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TravelController extends Controller
 {
@@ -14,7 +15,11 @@ class TravelController extends Controller
      */
     public function index()
     {
-        //
+        //obtiene todos los registros de viajes de la base de datos y los envía a la plantilla de Inertia "Travels"
+        $travels = Travel::all();
+        return Inertia::render('Travels', [
+            'travels' => $travels
+        ]);
     }
 
     /**
