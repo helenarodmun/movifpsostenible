@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 
-
 function Nav() {
       return (
   
@@ -26,10 +25,10 @@ function Nav() {
                 </li>
                 @guest
                 <li className="nav-item">
-                  <a className="nav-link mx-2 bi bi-door-open" href="{{ route('login') }}"> {texts.Login}</a>
+                  <a className="nav-link mx-2 bi bi-door-open" href='login'> {texts.Login}</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link mx-2 bi bi-check-circle" href="{{ route('register') }}"> {texts.Sign_up}</a>
+                  <a className="nav-link mx-2 bi bi-check-circle" href='register'> {texts.Sign_up}</a>
                 </li>	
                 @else
                 <li className="nav-item dropdown">
@@ -41,11 +40,11 @@ function Nav() {
                     <li><a className="dropdown-item bi bi-chat" href="#"> {texts.Messages}</a></li>
                     <li><a className="dropdown-item bi bi-credit-card" href="#"> {texts.Payments}</a></li>
                     <li><a className="dropdown-item bi bi-person-circle" href="#"> {texts.Profile}</a></li>
-                    <li><a className="dropdown-item bi bi-door-closed" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <li><a className="dropdown-item bi bi-door-closed" href='logout' onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
                         {texts.Logout}
                       </a>
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" className="d-none">
+                      <form id="logout-form" action='logout'method="POST" className="d-none">
                         @csrf
                       </form></li>
                   </ul>

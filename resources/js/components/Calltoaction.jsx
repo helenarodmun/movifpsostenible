@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import texts from '../textos/es.json';
+
 function Calltoaction() {
       return (
   
@@ -12,7 +13,7 @@ function Calltoaction() {
                 <form className="form-subscribe" id="contactFormFooter">
                   {/* Email address input*/}
                   <div className="row">              
-                    <a href="{{ route('register') }}" className="btn btn-primary btn-lg" role="button">{texts.Signup}</a>         
+                    <a href='register' className="btn btn-primary btn-lg" role="button">{texts.Signup}</a>         
                   </div>                    
                 </form>
               </div>
