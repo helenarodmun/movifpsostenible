@@ -23,4 +23,9 @@ class Travel extends Model
     // Al definir el nombre de la tabla aquí, evitamos que Laravel intente adivinarlo
     // y evitamos errores como "Base table or view not found"
     protected $table = 'travels';
+    // Establece la relación de la tabla travel con la tabla users mediante la columna user_id
+    public function driver()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

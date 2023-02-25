@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TravelForm;
 use App\Models\Travel;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class TravelController extends Controller
 {
@@ -17,7 +19,10 @@ class TravelController extends Controller
     {
         //obtiene todos los registros de viajes de la base de datos y los envía a la plantilla de Inertia "Travels"
         // $travels = Travel::all();
-        return Inertia::render('/travels');
+        // return Inertia::render('/travels/index');
+        $travels = Travel::latest('updated_at')->paginate(5);
+        
+        return view('travels.index', compact('travels'));
     }
 
     /**
@@ -36,21 +41,36 @@ class TravelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Travel  $travel
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Travel $travel)
-    {
-        //
-    }
+    public function store(TravelForm $request) {
+       $request->validated(); 
+        
+         $request->merge(['user_id' => Auth::id()]);
+         Travel::create($request->all());       
+         return back();
+     }
+     //muestra la vista con el formulario de búsqueda y el método 
+     public function searchForm()
+     {
+         return view('search');
+     }
+ //recibe los datos enviados por el usuario, los valida y busca el registro correspondiente en la base de datos.
+ // Si se encuentra, muestra la vista travels.show con los datos del viaje. Si no se encuentra, regresa a la vista anterior y muestra un mensaje de error
+ public function search(TravelForm $request)
+ {
+    dd($request->all());
+    $data = $request->validate($this->searchFormRules());
+ 
+     $travels = Travel::where('origin', $data['origin'])
+         ->where('destination', $data['destination'])
+         ->where('date', $data['date'])
+         ->get()->all();
+ 
+     if ($travels->isEmpty()) {
+         return back()->withErrors(['message' => 'No se han encontrado viajes']);
+     }
+     return view('travels.index', compact('travels'));
+ }
+ 
 
     /**
      * Show the form for editing the specified resource.

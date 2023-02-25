@@ -1,7 +1,7 @@
 import texts from '../textos/es.json';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
+import { Link } from '@inertiajs/react'
 
 function Nav() {
       return (
@@ -15,35 +15,35 @@ function Nav() {
             <div className=" collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav ms-auto ">
                 <li className="nav-item">
-                  <a className="nav-link mx-2 active bi bi-house" aria-current="page" href="/">{texts.Home}</a>
+                  <Link className="nav-link mx-2 active bi bi-house" aria-current="page" href="/">{texts.Home}</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link mx-2 bi bi-search" href="#"> {texts.Search}</a>
+                <Link className="nav-link mx-2 bi bi-search" href="#"> {texts.Search}</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link mx-2 bi bi-car-front" href="#"> {texts.Publish_a_ride}</a>
+                  <Link className="nav-link mx-2 bi bi-car-front" href="#"> {texts.Publish_a_ride}</Link>
                 </li>
                 @guest
                 <li className="nav-item">
-                  <a className="nav-link mx-2 bi bi-door-open" href='login'> {texts.Login}</a>
+                  <Link className="nav-link mx-2 bi bi-door-open" href='login'> {texts.Login}</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link mx-2 bi bi-check-circle" href='register'> {texts.Sign_up}</a>
+                  <Link className="nav-link mx-2 bi bi-check-circle" href='register'> {texts.Sign_up}</Link>
                 </li>	
                 @else
                 <li className="nav-item dropdown">
-                  <a className="nav-link mx-2 dropdown-toggle bi bi-person-circle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <Link className="nav-link mx-2 dropdown-toggle bi bi-person-circle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {'{'}{'{'} Auth::user()-&gt;name {'}'}{'}'}
-                  </a>
+                  </Link>
                   <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a className="dropdown-item bi bi-car-front" href="#"> {texts.My_rides}</a></li>
-                    <li><a className="dropdown-item bi bi-chat" href="#"> {texts.Messages}</a></li>
-                    <li><a className="dropdown-item bi bi-credit-card" href="#"> {texts.Payments}</a></li>
-                    <li><a className="dropdown-item bi bi-person-circle" href="#"> {texts.Profile}</a></li>
-                    <li><a className="dropdown-item bi bi-door-closed" href='logout' onclick="event.preventDefault();
+                    <li><Link className="dropdown-item bi bi-car-front" href="#"> {texts.My_rides}</Link></li>
+                    <li><Link className="dropdown-item bi bi-chat" href="#"> {texts.Messages}</Link></li>
+                    <li><Link className="dropdown-item bi bi-credit-card" href="#"> {texts.Payments}</Link></li>
+                    <li><Link className="dropdown-item bi bi-person-circle" href="#"> {texts.Profile}</Link></li>
+                    <li><Link className="dropdown-item bi bi-door-closed" href='logout' onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
                         {texts.Logout}
-                      </a>
+                      </Link>
                       <form id="logout-form" action='logout'method="POST" className="d-none">
                         @csrf
                       </form></li>

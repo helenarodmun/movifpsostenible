@@ -6,11 +6,12 @@
                     <!-- Page heading-->
                     <h1 class="mb-5">{{ __('Where do you want to go?') }}</h1>
 
-                    <form class="form-subscribe" id="contactForm">
+                    <form class="form-subscribe" action="/search" method="POST" id="contactForm">
+                        @csrf
                         <div class="row">
                             <!-- Departure -->
                             <div class="col" style="flex:1.5 0 0%">
-                                <input class="form-control form-control-lg" id="departure" name="departure"
+                                <input class="form-control form-control-lg" id="departure" name="origin"
                                     type="text" placeholder="{{ __('Leaving from') }}" />
                                 <div class="invalid-feedback text-white">
                                     {{ __('Departure is required.') }}</div>
@@ -36,7 +37,7 @@
                                     {{ __('Date is not valid.') }}</div>
                             </div>
 
-                            <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton"
+                            <div class="col-auto"><button class="btn btn-primary btn-lg" id="submitButton"
                                     type="submit">{{ __('Submit') }}</button></div>
 
                         </div>

@@ -63,7 +63,24 @@ Instala el paquete de Inertia. Si obtienes algún error por problemas de version
 -es una función en Laravel que permite definir una serie de rutas para un controlador con solo una línea de código. Cuando se utiliza Route::resource, Laravel crea automáticamente siete rutas para el controlador, incluyendo rutas para listar, crear, almacenar, mostrar, editar, actualizar y eliminar recursos.
 - con 'only especificamos solo las rutas que queremos generar
 
-### Front-end página principal modo estático (sin funcionalidades)
+## Front-end página principal modo estático (sin funcionalidades)
 
 - Se han convertido todos los partials de blade en componentes de React, como archivos .jsx
 - Se han modificado para incluir los textos del archivo .json
+
+## Enlaces 
+
+`npm install react-router-dom`
+- Enlaces para la interfaz de usuario, que nos permitirá definir las rutas y renderizar componentes específicos en función de la URL
+- Se reemplazan los enlaces de la plantilla, por el componente <Link> que intercepta eventos de clic y evita que se produzcan recargas de página completa
+
+## Relaciones entre tablas
+
+- Creación de las relaciones entre la tabla users y la tabla travels
+
+## Tabla viajes
+- se ha creado un método index, que mostrará todos los viajes disponibles, paginados y ordenados por fecha de publicación, de momento, para poder visualizar los resultados de las acciones que se realicen en la tabla para mas adelante desarrollar que se muestren los viajes segun el filtrado que realice el usuario
+- también se ha creado en la misma página, de momento un formulario para insertar registros a la tabla, en la fase del front-end se deberá separar como una vista independiente a la visualización de los viajes, respetando así la plantilla proporcionada. El método que usará el formulario para la inserción de datos es el método 'store', del TravelControlador
+
+`php artisan make:request TravelForm`
+- creación de la clase TravelForm, para gestionar las validaciones

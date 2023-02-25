@@ -41,4 +41,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function travels()
+    {
+        return $this->hasMany(Travel::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace Database\Migrations;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -21,10 +22,11 @@ return new class extends Migration
             $table->string('destination', 45)->nullable();
             $table->date('date')->nullable();
             $table->time('hour')->nullable();
-            $table->tinyInteger('seats')->nullable();
+            $table->unsignedTinyInteger('seats')->nullable()->unsigned();
             $table->timestamps();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         });
+        DB::statement('ALTER TABLE travels ADD CONSTRAINT check_seats_range CHECK (seats >= 0 AND seats <= 6)');
     }
 
     /**

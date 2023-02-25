@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Link } from 'react-router-dom';
 import texts from '../textos/es.json';
 
 function Calltoaction() {
@@ -13,7 +14,7 @@ function Calltoaction() {
                 <form className="form-subscribe" id="contactFormFooter">
                   {/* Email address input*/}
                   <div className="row">              
-                    <a href='register' className="btn btn-primary btn-lg" role="button">{texts.Signup}</a>         
+                    <Link href='register' className="btn btn-primary btn-lg" role="button">{texts.Signup}</Link>         
                   </div>                    
                 </form>
               </div>

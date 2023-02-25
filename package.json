@@ -18,6 +18,8 @@
         "vite": "*"
     },
     "dependencies": {
-        "@inertiajs/react": "^1.0.2"
+        "@inertiajs/react": "^1.0.2",
+        "react-bootstrap": "^2.7.2",
+        "react-router-dom": "^6.8.1"
     }
 }
