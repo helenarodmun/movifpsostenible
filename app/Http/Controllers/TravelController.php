@@ -48,27 +48,22 @@ class TravelController extends Controller
          Travel::create($request->all());       
          return back();
      }
-     //muestra la vista con el formulario de búsqueda y el método 
-     public function searchForm()
-     {
-         return view('search');
-     }
+
  //recibe los datos enviados por el usuario, los valida y busca el registro correspondiente en la base de datos.
  // Si se encuentra, muestra la vista travels.show con los datos del viaje. Si no se encuentra, regresa a la vista anterior y muestra un mensaje de error
- public function search(TravelForm $request)
+ public function search(Request $request)
  {
-    dd($request->all());
-    $data = $request->validate($this->searchFormRules());
- 
+    $data = $request;
+ dd($data);
      $travels = Travel::where('origin', $data['origin'])
-         ->where('destination', $data['destination'])
-         ->where('date', $data['date'])
+         ->orWhere('destination', $data['destination'])
+         ->orWhere('date', $data['date'])
          ->get()->all();
  
      if ($travels->isEmpty()) {
          return back()->withErrors(['message' => 'No se han encontrado viajes']);
      }
-     return view('travels.index', compact('travels'));
+     return Inertia::render('Travels', compact('travels'));
  }
  
 

@@ -11,11 +11,11 @@ function Header() {
                 <div className="text-center text-white">
                   {/* Page heading*/}
                   <h1 className="mb-5">{texts.Where}</h1>
-                  <form className="form-subscribe" id="contactForm">
+                  <form method='POST'  className="form-subscribe" id="contactForm">
                     <div className="row">
                       {/* Departure */}
                       <div className="col" style={{flex: '1.5 0 0%'}}>
-                        <input className="form-control form-control-lg" id="departure" name="departure" type="text" placeholder={texts.Leaving} />
+                        <input className="form-control form-control-lg" id="departure" name="origin" type="text" placeholder={texts.Leaving} />
                         <div className="invalid-feedback text-white">
                           {'{'}{'{'} __('Departure is required.') {'}'}{'}'}</div>
                         <div className="invalid-feedback text-white">
@@ -37,7 +37,7 @@ function Header() {
                         <div className="invalid-feedback text-white">
                           {'{'}{'{'} __('Date is not valid.') {'}'}{'}'}</div>
                       </div>
-                      <div className="col-auto"><button className="btn btn-primary btn-lg disabled" id="submitButton" type="submit">{texts.Submit}</button></div>
+                      <div className="col-auto"><button className="btn btn-primary btn-lg " id="submitButton" type="submit">{texts.Submit}</button></div>
                     </div>
                     <div className="row" style={{}}>
                     </div>

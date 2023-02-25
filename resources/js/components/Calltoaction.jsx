@@ -14,7 +14,7 @@ function Calltoaction() {
                 <form className="form-subscribe" id="contactFormFooter">
                   {/* Email address input*/}
                   <div className="row">              
-                    <Link href='register' className="btn btn-primary btn-lg" role="button">{texts.Signup}</Link>         
+                    <a href='register' className="btn btn-primary btn-lg" role="button">{texts.Signup}</a>         
                   </div>                    
                 </form>
               </div>

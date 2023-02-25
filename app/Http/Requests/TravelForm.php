@@ -31,13 +31,5 @@ class TravelForm extends FormRequest
              'seats' => 'required|digits_between:0,6'
         ];
     }
-    protected function searchFormRules()
-    {
-        return [
-            'origin' => 'required',
-            'destination' => 'required',
-            'date' => 'required|date',
-        ];
-    }
 
 }

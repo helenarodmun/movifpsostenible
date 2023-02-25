@@ -19,13 +19,6 @@
                 .card {
                  margin-top: 1.5rem;
                 }
-
-            /*  footer {
-                position: fixed;
-                height: 100px;
-                bottom: 0;
-                width: 100%;
-            }*/
             </style>
             {{-- @routes --}}
             @viteReactRefresh
