@@ -20,10 +20,11 @@
                  margin-top: 1.5rem;
                 }
             </style>
-            @routes
-            @viteReactRefresh
+             @routes
+            @viteReactRefresh            
             @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
             @inertiaHead
+           
         </head>
         <body>
             @inertia
