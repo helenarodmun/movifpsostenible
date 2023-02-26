@@ -54,7 +54,7 @@ class TravelController extends Controller
  public function search(Request $request)
  {
     $data = $request;
- dd($data);
+     dd($data);
      $travels = Travel::where('origin', $data['origin'])
          ->orWhere('destination', $data['destination'])
          ->orWhere('date', $data['date'])
