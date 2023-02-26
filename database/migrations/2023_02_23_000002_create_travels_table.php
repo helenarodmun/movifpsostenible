@@ -17,18 +17,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('travels', function (Blueprint $table) {
-            $table->id();
+            $table->id();            
+            $table->integer('user_id')->index();
             $table->string('origin', 45)->nullable();
             $table->string('destination', 45)->nullable();
             $table->date('date')->nullable();
             $table->time('hour')->nullable();
             $table->unsignedTinyInteger('seats')->nullable()->unsigned();
             $table->timestamps();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         });
         DB::statement('ALTER TABLE travels ADD CONSTRAINT check_seats_range CHECK (seats >= 0 AND seats <= 6)');
     }
-
+    protected $table = 'travels';
     /**
      * Reverse the migrations.
      *

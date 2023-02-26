@@ -11,7 +11,7 @@ function Header() {
                 <div className="text-center text-white">
                   {/* Page heading*/}
                   <h1 className="mb-5">{texts.Where}</h1>
-                  <form method='POST'  className="form-subscribe" id="contactForm">
+                  <form className="form-subscribe" id="contactForm">
                     <div className="row">
                       {/* Departure */}
                       <div className="col" style={{flex: '1.5 0 0%'}}>

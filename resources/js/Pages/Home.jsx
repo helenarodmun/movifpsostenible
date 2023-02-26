@@ -7,10 +7,10 @@ import Nav from "../components/Nav";
 import Showcase from "../components/Showcase";
 import Testimonials from "../components/Testimonials";
 
-export default function Welcome({ user }) {
+export default function Home() {
     return (
         <>
-            <Nav></Nav>
+            <Nav ></Nav>
             <Header></Header>
             <IconsGrid></IconsGrid>
             <Showcase></Showcase>

@@ -5,8 +5,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\TravelController;
-
 
 Route::get('/', function () {    
     return Inertia::render('Home', []);
@@ -31,4 +29,3 @@ Route::post('travels', [TravelController::class, 'store']);
 Route::get('/test', function () {
     return session('foo', 'default');
 });
-

@@ -67,12 +67,7 @@ class TravelController extends Controller
  }
  
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Travel  $travel
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Travel $travel)
     {
         //

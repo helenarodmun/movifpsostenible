@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Inertia\Inertia;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -42,11 +43,22 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Get the comments for the blog post.
-     */
-    public function travels()
+    public function show(User $user)
     {
-        return $this->hasMany(Travel::class);
+        return Inertia::render('Home', [
+          'user' => $user
+        ]);
     }
+    //relación entre user y travel, con el tiempo de creación y/o actualización de un registro
+    public function bookings()
+    {
+        return $this->belongsToMany(Travel::class)->withTimestamps();
+    }
+
+    //Devuelve booleano en función si el usuario ha reservado un viaje
+    public function reservedBy(Travel $travel)
+    {
+        return $this->bookings->contains($travel);
+    }
+  
 }

@@ -15,10 +15,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('travel_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idtravel')->constrained('travels')->onDelete('cascade');
-            $table->foreignId('iduser')->constrained('users')->onDelete('cascade');
+            $table->foreignId('travel_id')->constrained('travels')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('travel_user');
     }
 };
