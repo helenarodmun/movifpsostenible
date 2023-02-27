@@ -54,17 +54,13 @@ class TravelController extends Controller
  public function search(Request $request)
  {
     $data = $request;
- dd($data);
      $travels = Travel::where('origin', $data['origin'])
          ->orWhere('destination', $data['destination'])
          ->orWhere('date', $data['date'])
          ->get()->all();
+     return Inertia::render('Travels/Search', compact('travels'));
  
-     if ($travels->isEmpty()) {
-         return back()->withErrors(['message' => 'No se han encontrado viajes']);
-     }
-     return Inertia::render('Travels', compact('travels'));
- }
+    }
  
 
 

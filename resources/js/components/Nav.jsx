@@ -1,6 +1,7 @@
 import React from "react";
 import { usePage } from "@inertiajs/react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Link } from "@inertiajs/react";
 
 function NavBar() {
     const { auth } = usePage().props;
@@ -69,11 +70,12 @@ function NavBar() {
                                 Perfil
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item
-                                href="logout"
-                                className="bi bi-door-closed">
-                                Cerrar sesión
-                            </NavDropdown.Item>
+                            <NavDropdown.Item><Link
+                                href="/logout" 
+                                method="post"
+                                className="bi bi-door-closed">                               
+                             Cerrar sesión</Link>
+                             </NavDropdown.Item>
                         </NavDropdown>
                     )}
                 </Nav>
