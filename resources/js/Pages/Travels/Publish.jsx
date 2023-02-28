@@ -34,6 +34,7 @@ export default function Index(props) {
             optionElement.selected = selected;
             optionElement.textContent = option;
             document.querySelector("select").appendChild(optionElement);
+            
         });
     }
     return (
