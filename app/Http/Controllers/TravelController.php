@@ -21,8 +21,8 @@ class TravelController extends Controller
         // $travels = Travel::all();
         // return Inertia::render('/travels/index');
         $travels = Travel::latest('updated_at')->paginate(5);
-        
-        return view('travels.index', compact('travels'));
+        // dd($travels);
+        return Inertia::render('Travels/Index',compact('travels'));
     }
 
     /**

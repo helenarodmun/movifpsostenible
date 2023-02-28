@@ -70,11 +70,14 @@ function NavBar() {
                                 Perfil
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item><Link
+                            <NavDropdown.Item>
+                                <Link
                                 href="/logout" 
                                 method="post"
+                                as="button"
                                 className="bi bi-door-closed">                               
-                             Cerrar sesión</Link>
+                             Cerrar sesión
+                             </Link>
                              </NavDropdown.Item>
                         </NavDropdown>
                     )}

@@ -22,7 +22,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->midd
 
 
 //a función name se utiliza para darle un nombre a la ruta, lo que permite hacer referencia a ella desde otras partes del código utilizando el nombre en lugar de la URL
-// Route::get('travels', [TravelController::class, 'index']);
+Route::get('travels', [TravelController::class, 'index']);
 
 // Route::post('travels', [TravelController::class, 'store']);
-

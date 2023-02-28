@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import React from "react";
+import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 
 export default function Index(props) {
     return (
@@ -7,7 +7,8 @@ export default function Index(props) {
             <Row>
                 <Col md={8}>
                     <h1>Viajes</h1>
-                    {props.travels.map((travel) => (
+                    {console.log(props)}
+                    {props.travels.data.map((travel) => (
                         <div key={travel.id}>
                             <ul>
                                 <li>Origen: {travel.origin}</li>
@@ -15,11 +16,24 @@ export default function Index(props) {
                                 <li>Fecha: {travel.date}</li>
                                 <li>Hora: {travel.hour}</li>
                                 <li>Asientos disponibles: {travel.seats}</li>
-                                <small>Publicado por: {travel.driver.name} {travel.updated_at.diffForHumans()}</small>
+                                <small>
+                                    Publicado por: {travel.user_id}{" "}
+                                    {travel.updated_at}
+                                </small>
                             </ul>
                         </div>
                     ))}
-                </Col>         
+                </Col>
+                <Col>
+                    <Form>
+                        <Col>
+                            {" "}
+                            <label htmlFor="origin">Origin </label>
+                            <br />
+                            <input type="text" name="origin" id="" />
+                        </Col>
+                    </Form>
+                </Col>
             </Row>
         </Container>
     );
