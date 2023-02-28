@@ -3,7 +3,7 @@ import { range } from "lodash";
 import React from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 
-export default function Index(props) {
+export default function Index() {
     // useForm es un helper diseñado para formularios
     const { data, setData, post, processing, errors } = useForm({
         origin: "",
@@ -26,15 +26,16 @@ export default function Index(props) {
         );
     }
     function seatsGenerate(data) {
+        const oldSeats = ''
         const options = Array.from({ length: 7 }, (_, i) => i).reverse(); // generamos un array con los valores permitidos (del 6 al 0)
         options.forEach((option) => {
-            const selected = old("seats") == option ? "selected" : ""; // si el valor estaba previamente seleccionado, lo marcamos como seleccionado
+            const selected = (oldSeats == option) ? "selected" : ""; // si el valor estaba previamente seleccionado, lo marcamos como seleccionado
             const optionElement = document.createElement("option");
             optionElement.value = option;
             optionElement.selected = selected;
             optionElement.textContent = option;
             document.querySelector("select").appendChild(optionElement);
-            
+
         });
     }
     return (

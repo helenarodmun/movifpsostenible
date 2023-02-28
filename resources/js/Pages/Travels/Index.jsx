@@ -5,31 +5,6 @@ import Nav from '../../components/Nav'
 export default function Index() {
     const {travels} = usePage().props
     return (
-<<<<<<< HEAD
-        <Container>
-            <Row>
-                <Col md={8}>
-                    <h1>Viajes</h1>
-                    {console.log(props)}
-                    {props.travels.data.map((travel) => (
-                        <div key={travel.id}>
-                            <ul>
-                                <li>Origen: {travel.origin}</li>
-                                <li>Destino: {travel.destination}</li>
-                                <li>Fecha: {travel.date}</li>
-                                <li>Hora: {travel.hour}</li>
-                                <li>Asientos disponibles: {travel.seats}</li>
-                                <small>
-                                    Publicado por: {travel.driver.name} at  :
-                                    {travel.updated_at}
-                                </small>
-                            </ul>
-                        </div>
-                    ))}
-                </Col>         
-            </Row>
-        </Container>
-=======
         <>
             <Nav></Nav>
             <Container>
@@ -59,6 +34,5 @@ export default function Index() {
                 </Row>
             </Container>
         </>
->>>>>>> 8adc1b426a24baed62865b1ce42a65d815d73221
     );
 }
