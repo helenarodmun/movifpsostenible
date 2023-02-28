@@ -25,11 +25,11 @@ function NavBar() {
                     </Nav.Item>
                     <Nav.Item>
                         <Nav.Link href="publish" className="mx-2 bi bi-car-front">
+
                             Publica un viaje
                         </Nav.Link>
                     </Nav.Item>
-                    {auth.user == null && (
-                        <>
+                
                             <Nav.Item>
                                 <Nav.Link
                                     href="login"
@@ -44,8 +44,7 @@ function NavBar() {
                                     Registrarme
                                 </Nav.Link>
                             </Nav.Item>
-                        </>
-                    )}
+                     
                     {auth.user != null && (
                         <NavDropdown
                             title={auth.user.name}
