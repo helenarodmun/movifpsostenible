@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TravelController;
 use App\Models\User;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,3 +36,5 @@ Route::get('travels', [TravelController::class, 'index']);
 Route::get('/publish',function(){
     return Inertia::render('Travels/Publish');
 });
+
+Route::post('/publish',[TravelController::class,'store']);
