@@ -25,3 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->midd
 Route::get('travels', [TravelController::class, 'index']);
 
 // Route::post('travels', [TravelController::class, 'store']);
+
+Route::get('/publish',function(){
+    return Inertia::render('Travels/Publish');
+});

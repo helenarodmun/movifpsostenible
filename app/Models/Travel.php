@@ -26,7 +26,7 @@ class Travel extends Model
     // Establece la relación de la tabla travel con la tabla users mediante la columna user_id
     public function driver()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class,'user_id');
     }
     // Establece la relación muchos a muchos de la tabla travels con la tabla users
     public function users()
@@ -34,8 +34,9 @@ class Travel extends Model
         return $this->belongsToMany(User::class);
     }
     // Establece la relación muchos a muchos de la tabla travels con la tabla users y guarda los timestamps
-    public function bookings()
-    {
-        return $this->belongsToMany(User::class)->withTimestamps();
-    }
+    
+    // public function bookings()
+    // {
+    //     return $this->belongsToMany(User::class)->withTimestamps();
+    // }
 }

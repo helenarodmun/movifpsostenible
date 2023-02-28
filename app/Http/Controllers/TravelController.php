@@ -20,9 +20,9 @@ class TravelController extends Controller
         //obtiene todos los registros de viajes de la base de datos y los envía a la plantilla de Inertia "Travels"
         // $travels = Travel::all();
         // return Inertia::render('/travels/index');
-        $travels = Travel::latest('updated_at')->paginate(5);
+        $travels = Travel::with('driver')->get();
         // dd($travels);
-        return Inertia::render('Travels/Index',compact('travels'));
+        return Inertia::render('Travels/Index',['travels'=> $travels]);
     }
 
     /**

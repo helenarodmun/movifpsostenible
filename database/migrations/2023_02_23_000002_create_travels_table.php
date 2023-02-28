@@ -18,7 +18,7 @@ return new class extends Migration
     {
         Schema::create('travels', function (Blueprint $table) {
             $table->id();            
-            $table->integer('user_id')->index();
+            $table->foreignId('user_id');
             $table->string('origin', 45)->nullable();
             $table->string('destination', 45)->nullable();
             $table->date('date')->nullable();

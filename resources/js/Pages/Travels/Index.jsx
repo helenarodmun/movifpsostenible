@@ -1,40 +1,38 @@
-import React from "react";
+import { usePage } from "@inertiajs/react";
+// import React from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
-
-export default function Index(props) {
+import Nav from '../../components/Nav'
+export default function Index() {
+    const {travels} = usePage().props
     return (
-        <Container>
-            <Row>
-                <Col md={8}>
-                    <h1>Viajes</h1>
-                    {console.log(props)}
-                    {props.travels.data.map((travel) => (
-                        <div key={travel.id}>
-                            <ul>
-                                <li>Origen: {travel.origin}</li>
-                                <li>Destino: {travel.destination}</li>
-                                <li>Fecha: {travel.date}</li>
-                                <li>Hora: {travel.hour}</li>
-                                <li>Asientos disponibles: {travel.seats}</li>
-                                <small>
-                                    Publicado por: {travel.user_id}{" "}
-                                    {travel.updated_at}
-                                </small>
-                            </ul>
-                        </div>
-                    ))}
-                </Col>
-                <Col>
-                    <Form>
-                        <Col>
-                            {" "}
-                            <label htmlFor="origin">Origin </label>
-                            <br />
-                            <input type="text" name="origin" id="" />
-                        </Col>
-                    </Form>
-                </Col>
-            </Row>
-        </Container>
+        <>
+            <Nav></Nav>
+            <Container>
+                <Row>
+                    <Col md={8}>
+                        <h1>Viajes</h1>
+                        {console.log(travels)}
+                        {travels.map((travel) => (
+                            <div key={travel.id}>
+                                {console.log(travel.driver.name)}
+                                <ul>
+                                    <li>Origen: {travel.origin}</li>
+                                    <li>Destino: {travel.destination}</li>
+                                    <li>Fecha: {travel.date}</li>
+                                    <li>Hora: {travel.hour}</li>
+                                    <li>
+                                        Asientos disponibles: {travel.seats}
+                                    </li>
+                                    <small>
+                                        Publicado por: {travel.driver.name}{" * "}
+                                        {travel.updated_at}
+                                    </small>
+                                </ul>
+                            </div>
+                        ))}
+                    </Col>
+                </Row>
+            </Container>
+        </>
     );
 }
