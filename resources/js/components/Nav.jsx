@@ -24,7 +24,7 @@ function NavBar() {
                         </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="#" className="mx-2 bi bi-car-front">
+                        <Nav.Link href="publish" className="mx-2 bi bi-car-front">
                             Publica un viaje
                         </Nav.Link>
                     </Nav.Item>

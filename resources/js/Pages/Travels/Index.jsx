@@ -17,23 +17,13 @@ export default function Index(props) {
                                 <li>Hora: {travel.hour}</li>
                                 <li>Asientos disponibles: {travel.seats}</li>
                                 <small>
-                                    Publicado por: {travel.user_id}{" "}
+                                    Publicado por: {travel.driver.name} at  :
                                     {travel.updated_at}
                                 </small>
                             </ul>
                         </div>
                     ))}
-                </Col>
-                <Col>
-                    <Form>
-                        <Col>
-                            {" "}
-                            <label htmlFor="origin">Origin </label>
-                            <br />
-                            <input type="text" name="origin" id="" />
-                        </Col>
-                    </Form>
-                </Col>
+                </Col>         
             </Row>
         </Container>
     );

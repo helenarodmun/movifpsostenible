@@ -49,6 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
           'user' => $user
         ]);
     }
+
     //relación entre user y travel, con el tiempo de creación y/o actualización de un registro
     public function bookings()
     {

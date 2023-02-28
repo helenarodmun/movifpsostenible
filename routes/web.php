@@ -13,7 +13,13 @@ Route::get('/', function () {
 Route::post('/search', [TravelController::class, 'search'])->name(
     'travels.search'
 );
+// Route::post('/publish', [TravelController::class, 'store'])->name(
+//     'travels.publish'
+// );
 
+Route::get('/publish', function () {
+    return Inertia::render('Publish');
+});
 //::post('/', [TravelController::class, 'search'])->name('travels.search');
 
 
