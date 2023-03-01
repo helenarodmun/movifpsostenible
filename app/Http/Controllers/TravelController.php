@@ -57,6 +57,7 @@ class TravelController extends Controller
      $travels = Travel::where('origin', $data['origin'])
          ->orWhere('destination', $data['destination'])
          ->orWhere('date', $data['date'])
+         ->with('driver')
          ->get()->all();
      return Inertia::render('Travels/Search', compact('travels'));
  
