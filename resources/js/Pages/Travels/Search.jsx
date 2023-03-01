@@ -1,12 +1,15 @@
 import { usePage } from "@inertiajs/react";
 import React from "react";
 import { Button, Card, ListGroup } from "react-bootstrap";
+import  Nav  from  '/resources/js/components/Nav';
+import  Footer  from  '/resources/js/components/Footer';
 
 export default function Search() {
     const { travels } = usePage().props;
     return (
         <>
-            <h1>Viajes</h1>
+        <Nav/>
+            <h1 className="m-5">Viajes</h1>
             {travels.map((travel) => (
                 <Card   key={travel.id} className="m-5 ">
                     <Card.Body>
@@ -28,6 +31,7 @@ export default function Search() {
                     </Card.Body>
                 </Card>
             ))}
+            <Footer/>
         </>
     );
 }

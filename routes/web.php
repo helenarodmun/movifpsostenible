@@ -38,3 +38,7 @@ Route::get('/publish',function(){
 });
 
 Route::post('/publish',[TravelController::class,'store']);
+
+Route::get('/profile', function () {
+    return Inertia::render('Profile/Index');
+});
