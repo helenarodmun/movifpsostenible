@@ -5,7 +5,7 @@ import { useForm } from "@inertiajs/react";
 
 function Header() {
    // useForm es un helper diseñado para formularios
-   const { data, setData, post, processing, errors } = useForm({
+   const { data, setData, get, processing, errors } = useForm({
     origin: "",
     destination: "",
     date: "",
@@ -13,7 +13,7 @@ function Header() {
 function submit(e) {
     e.preventDefault();
     // post puede recibir un parametro de parametros donde puedes complementar la funcion con mas funciones, en este caso, si se hace bien el post se sube la data a la consola
-    post(
+    get(
         "/search",
         {
             onSuccess: () => {

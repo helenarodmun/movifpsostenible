@@ -7,7 +7,6 @@ function NavBar() {
     const { auth } = usePage().props;
 
     return (
-      
         <Navbar bg="dark" variant="dark" expand="lg" className="p-3">
             <Navbar.Brand href="/">MoviFP Sostenible</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarNavDropdown" />
@@ -24,35 +23,39 @@ function NavBar() {
                         </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="publish" className="mx-2 bi bi-car-front">
-
+                        <Nav.Link
+                            href="publish"
+                            className="mx-2 bi bi-car-front"
+                        >
                             Publica un viaje
                         </Nav.Link>
                     </Nav.Item>
-                
-                            <Nav.Item>
-                                <Nav.Link
-                                    href="login"
-                                    className="mx-2 bi bi-door-open">
-                                    Inicio de sesión
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link
-                                    href="register"
-                                    className="mx-2 bi bi-check-circle">
-                                    Registrarme
-                                </Nav.Link>
-                            </Nav.Item>
-                     
+
+                    <Nav.Item>
+                        <Nav.Link href="login" className="mx-2 bi bi-door-open">
+                            Inicio de sesión
+                        </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link
+                            href="register"
+                            className="mx-2 bi bi-check-circle"
+                        >
+                            Registrarme
+                        </Nav.Link>
+                    </Nav.Item>
+
                     {auth.user != null && (
                         <NavDropdown
                             title={auth.user.name}
                             id="navbarDropdownMenuLink"
-                            className="mx-2 bi bi-person-circle">
+                            className="mx-2"
+                            align="end"
+                        >
                             <NavDropdown.Item
                                 href="#"
-                                className="bi bi-car-front">
+                                className="bi bi-car-front"
+                            >
                                 Mis viajes
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#" className="bi bi-chat">
@@ -60,24 +63,27 @@ function NavBar() {
                             </NavDropdown.Item>
                             <NavDropdown.Item
                                 href="#"
-                                className="bi bi-credit-card">
+                                className="bi bi-credit-card"
+                            >
                                 Pagos
                             </NavDropdown.Item>
                             <NavDropdown.Item
-                                href="#"
-                                className="bi bi-person-circle">
+                                href="/profile"
+                                className="bi bi-person-circle"
+                            >
                                 Perfil
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item>
                                 <Link
-                                href="/logout" 
-                                method="post"
-                                as="button"
-                                className="bi bi-door-closed">                               
-                             Cerrar sesión
-                             </Link>
-                             </NavDropdown.Item>
+                                    href="/logout"
+                                    method="post"
+                                    as="button"
+                                    className="bi bi-door-closed"
+                                >
+                                    Cerrar sesión
+                                </Link>
+                            </NavDropdown.Item>
                         </NavDropdown>
                     )}
                 </Nav>

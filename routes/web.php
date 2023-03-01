@@ -11,7 +11,7 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
-Route::post('/search', [TravelController::class, 'search'])->name(
+Route::get('/search', [TravelController::class, 'search'])->name(
     'travels.search'
 );
 // Route::post('/publish', [TravelController::class, 'store'])->name(
@@ -39,6 +39,11 @@ Route::get('/publish',function(){
 
 Route::post('/publish',[TravelController::class,'store']);
 
+
+
 Route::get('/profile', function () {
+    return Inertia::render('Profile/Index');
+});
+Route::post('/profile', function () {
     return Inertia::render('Profile/Index');
 });

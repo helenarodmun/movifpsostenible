@@ -5,8 +5,7 @@ import Nav from "../../components/Nav";
 export default function Index() {
     const { travels } = usePage().props;
     function myDate(fechaHora) {
-        const date =  new Date(fechaHora);
-
+        return dayjs(fechaHora).format("DD MMMM YYYY - HH:mm:ss");
     }
     return (
         <>
@@ -15,8 +14,7 @@ export default function Index() {
                 <Row>
                     <h1>Viajes</h1>
                     {travels.map((travel) => (
-                        <Col md={6} className="-ml-3">
-                            <div key={travel.id}>
+                        <Col key={travel.id} md={6} className="-ml-3">
                                 <Card>
                                     <Card.Title className="m-4">
                                         Origen: {travel.origin}
@@ -41,11 +39,10 @@ export default function Index() {
                                         >
                                             {travel.driver.name}
                                         </a>
-                                        {/* {" - "} */}
-                                        {/* {travel.updated_at} */}
+                                        {" - "}
+                                        {myDate(travel.updated_at)}
                                     </Card.Footer>
                                 </Card>
-                            </div>
                         </Col>
                     ))}
                 </Row>
