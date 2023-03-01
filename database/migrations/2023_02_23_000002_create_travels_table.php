@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('destination', 45)->nullable();
             $table->date('date')->nullable();
             $table->time('hour')->nullable();
+            $table->int('price')->nullable();            
             $table->unsignedTinyInteger('seats')->nullable()->unsigned();
             $table->timestamps();
         });

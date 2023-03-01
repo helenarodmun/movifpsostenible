@@ -27,7 +27,7 @@ function submit(e) {
     <header className="masthead">
       <Container className="position-relative">
         <Row className="justify-content-center">
-          <Col xl={10}>
+          <Col >
             <div className="text-center text-white">
               {/* Page heading*/}
               <h1 className="mb-5">{texts.Where}</h1>
