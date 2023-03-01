@@ -1,17 +1,20 @@
 import { usePage } from "@inertiajs/react";
 import React from "react";
-import { Button, Card, ListGroup } from "react-bootstrap";
+import { Button, Card, Col, ListGroup } from "react-bootstrap";
 import Nav from "/resources/js/components/Nav";
 import Footer from "/resources/js/components/Footer";
 
 export default function Search() {
     const { travels } = usePage().props;
+        function myDate(fechaHora) {
+        return dayjs(fechaHora).format("DD MMMM YYYY - HH:mm:ss");
+    }
     return (
         <>
             <Nav />
             <h1 className="m-5">Viajes</h1>
             {travels.map((travel) => (
-                <Card key={travel.id} className="m-5 ">
+                <Col key={travel.id} md={6}> <Card  className="m-5 ">
                     <Card.Body>
                         <Card.Header>
                             <h5>Detalles del viaje</h5>
@@ -35,13 +38,14 @@ export default function Search() {
                                 </ListGroup.Item>
                                 <small>
                                     Publicado por: {travel.driver.name}{" "}
-                                    {travel.updated_at}
+                                    {myDate( travel.updated_at)}
                                 </small>
                             </ListGroup>
                         </Card.Text>
                         <Button variant="success">Reserva tu viaje!</Button>
                     </Card.Body>
-                </Card>
+                </Card></Col>
+               
             ))}
             <Footer />
         </>
