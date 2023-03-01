@@ -16,7 +16,7 @@
             <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
             {{-- DayJS --}}
             <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-
+            <script src="https://unpkg.com/dayjs@1.9.4/locale/es.js"></script>
             <!-- My styles -->
             <style>
                 .card {

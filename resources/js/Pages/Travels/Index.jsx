@@ -2,17 +2,18 @@ import { usePage } from "@inertiajs/react";
 // import React from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import Nav from "../../components/Nav";
+
 export default function Index() {
     const { travels } = usePage().props;
     function myDate(fechaHora) {
-        return dayjs(fechaHora).format("DD MMMM YYYY - HH:mm:ss");
+        return dayjs(fechaHora).locale('es').format("DD MMMM YYYY - HH:mm:ss");
     }
     return (
         <>
             <Nav></Nav>
             <Container>
                 <Row>
-                    <h1>Viajes</h1>
+                    <h1 className="m-5">Viajes</h1>
                     {travels.map((travel) => (
                         <Col key={travel.id} md={6} className="-ml-3">
                                 <Card>

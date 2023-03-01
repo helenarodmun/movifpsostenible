@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('name', 45);
             $table->string('email', 45)->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->int('telephone')->nullable();
-            $table->path('photo')->nullable();
+            $table->integer('telephone')->nullable();
+            $table->string('photo')->nullable();
             $table->string('center')->nullable();
             $table->enum('tags', ['No fumador', 'Extrovertido', 'Introvertido', 'Con Música', 'Sin música', 'Puntual'])->nullable();
-            $table->text('description', 150);
+            $table->text('description', 150)->nullable();;
             $table->string('password', 255);
             $table->boolean('admin')->nullable();
             $table->boolean('blocked')->nullable();
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-        DB::statement('ALTER TABLE users ADD CONSTRAINT check_telf CHECK (telephone LIKE [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])');
+        DB::statement('ALTER TABLE users ADD CONSTRAINT check_telf CHECK (telephone LIKE \'[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]\')');
     }
     
     public function down()

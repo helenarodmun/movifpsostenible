@@ -45,8 +45,9 @@ class TravelController extends Controller
        $request->validated(); 
         
          $request->merge(['user_id' => Auth::id()]);
-         Travel::create($request->all());       
-         return back();
+         Travel::create($request->all()); 
+         $travels = Travel::with('driver')->latest()->get();      
+         return Inertia::render('Travels/Index',['travels'=> $travels]);
      }
 
  //recibe los datos enviados por el usuario, los valida y busca el registro correspondiente en la base de datos.

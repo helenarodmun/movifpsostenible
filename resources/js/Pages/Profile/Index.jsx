@@ -22,8 +22,13 @@ export default function Index() {
                         ></img>
                         <h1>{auth.user.name}</h1>
                         <br />
-                        <h3>{auth.user.email}</h3>
+                        <h3>{auth.user.centro}</h3>
                         <br />
+                        <h4>{auth.user.email}</h4>
+                        <br />
+                        <h4>{auth.user.tags}</h4>
+                        <br />
+                        <h4>{auth.user.description}</h4>
                     </Col>
                 </Row>
             </Container>
