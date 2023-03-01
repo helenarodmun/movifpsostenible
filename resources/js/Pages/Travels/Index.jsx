@@ -2,11 +2,18 @@ import { usePage } from "@inertiajs/react";
 // import React from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import Nav from "../../components/Nav";
+
 export default function Index() {
     const { travels } = usePage().props;
     function myDate(fechaHora) {
-        const date =  new Date(fechaHora);
-
+        const date = new Date(fechaHora);
+        const newDate = [
+            date.getDay(),
+            date.getMonth(),
+            date.getFullYear(),
+        ];
+        
+        return newDate.splice(' - ').toString();
     }
     return (
         <>
@@ -41,8 +48,8 @@ export default function Index() {
                                         >
                                             {travel.driver.name}
                                         </a>
-                                        {/* {" - "} */}
-                                        {/* {travel.updated_at} */}
+                                        {" - "}
+                                        {console.log(myDate(travel.updated_at))}
                                     </Card.Footer>
                                 </Card>
                             </div>
