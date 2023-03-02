@@ -31,8 +31,7 @@ function submit(e) {
             <div className="text-center text-white">
               {/* Page heading*/}
               <h1 className="mb-5">{texts.Where}</h1>
-              <Form  method="POST"
-                                onSubmit={submit} className="form-subscribe" id="contactForm">
+              <Form  method="POST" onSubmit={submit} className="form-subscribe" id="contactForm">
                 <Row>
                   {/* Departure */}
                   <Col style={{flex: '1.5 0 0%'}}>

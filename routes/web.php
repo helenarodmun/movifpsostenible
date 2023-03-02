@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TravelController;
+use App\Http\Controllers\TravelUserController;
 use App\Models\User;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->midd
 
 //a función name se utiliza para darle un nombre a la ruta, lo que permite hacer referencia a ella desde otras partes del código utilizando el nombre en lugar de la URL
 Route::get('travels', [TravelController::class, 'index']);
+Route::get('travels/{id}', [TravelUserController::class, 'store']);
 
 // Route::post('travels', [TravelController::class, 'store']);
 
