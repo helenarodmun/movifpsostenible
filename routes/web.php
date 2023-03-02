@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TravelController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Auth;
@@ -47,3 +48,9 @@ Route::get('/profile', function () {
 Route::post('/profile', function () {
     return Inertia::render('Profile/Index');
 });
+Route::get('/editProfile', function () {
+    return Inertia::render('Profile/Edit');
+});
+
+Route::get('/updateProfile',[UserController::class,'update'])->middleware('auth');
+Route::put('/updateProfile',[UserController::class,'update'])->middleware('auth');
