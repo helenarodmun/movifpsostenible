@@ -49,3 +49,9 @@ Route::get('/profile', function () {
 Route::post('/profile', function () {
     return Inertia::render('Profile/Index');
 });
+Route::get('/editProfile', function () {
+    return Inertia::render('Profile/Edit');
+});
+
+Route::get('/updateProfile',[UserController::class,'update'])->middleware('auth');
+Route::put('/updateProfile',[UserController::class,'update'])->middleware('auth');
