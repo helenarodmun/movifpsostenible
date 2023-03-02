@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function Index() {
     const { auth } = usePage().props;
-    const { data, setData, put, processing, errors } = useForm({
+    const { data, setData, post, processing, errors } = useForm({
         name: '',
         center: '',
         email: '',
@@ -18,7 +18,7 @@ export default function Index() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        put(
+        post(
             "/updateProfile",
             {
                 onSuccess: () => {
@@ -48,8 +48,7 @@ export default function Index() {
                                 <Form.Control
                                     type="text"
                                     name="name"
-                                    placeholder={auth.user.name}
-                                    defaultValue={auth.user.name}
+                                    value={data.name}
                                     onChange={(e) =>
                                         setData("name", e.target.value)
                                     }
@@ -65,8 +64,7 @@ export default function Index() {
                                 <Form.Control
                                     type="text"
                                     name="center"
-                                    placeholder={auth.user.center}
-                                    defaultValue={auth.user.center}
+                                    value={data.center}
                                     onChange={(e) =>
                                         setData("center", e.target.value)
                                     }
@@ -82,8 +80,7 @@ export default function Index() {
                                 <Form.Control
                                     type="email"
                                     name="email"
-                                    placeholder={auth.user.email}
-                                    defaultValue={auth.user.email}
+                                    value={data.email}
                                     onChange={(e) =>
                                         setData("email", e.target.value)
                                     }
@@ -99,8 +96,7 @@ export default function Index() {
                                 <Form.Control
                                     type="text"
                                     name="description"
-                                    placeholder={auth.user.description}
-                                    defaultValue={auth.user.description}
+                                    value={data.description}
                                     onChange={(e) =>
                                         setData("description", e.target.value)
                                     }
@@ -116,8 +112,7 @@ export default function Index() {
                                 <Form.Control
                                     type="text"
                                     name="tags"
-                                    placeholder={auth.user.tags}  
-                                    defaultValue={auth.user.tags} 
+                                    value={data.tags}
                                     onChange={(e) =>
                                         setData("tags", e.target.value)
                                     }
@@ -128,22 +123,6 @@ export default function Index() {
                                     </div>
                                 )}
                             </Form.Group>
-                            <Form.Group className="mb-3 p-3">
-                                <Form.Label>Contraseña:</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    name="password"
-                                    onChange={(e) =>
-                                        setData("password", e.target.value)
-                                    }
-                                />
-                                {errors.password && (
-                                    <div className="alert alert-danger">
-                                        {errors.password}
-                                    </div>
-                                )}
-                            </Form.Group>
-
                             <Button
                                 type="submit"
                                 variant="success"

@@ -36,7 +36,7 @@ export default function Index() {
                                 <h3>Publica un viaje</h3>
                             </Card.Header>
                             <Card.Body>
-                                <Form method="POST" onSubmit={submit}>
+                                <Form  onSubmit={submit}>
                                     <Form.Group>
                                         <Form.Label>Origen:</Form.Label>
                                         <Form.Control

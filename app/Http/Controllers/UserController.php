@@ -26,19 +26,22 @@ class UserController extends Controller
     // Actualiza el perfil de un usuario.
     public function update(UserForm $request, User $user)
     {
+           
 
             // Valida los datos del formulario.
             $validatedData = $request->validated();
-          
+            $user = User::find(Auth::id());
+
             $user->name = $validatedData['name'];
             $user->center = $validatedData['center'];
             $user->email = $validatedData['email'];
             $user->description = $validatedData['description'];
             $user->tags = $validatedData['tags'];
-            $user->password =  Hash::make($validatedData['password']);
+            // $user->password =  Hash::make($validatedData['password']);
             $user->save();
+            
             // Redirige al perfil del usuario actualizado con un mensaje de éxito.
-            return Inertia::render('Profile/Index', ['success', 'Los datos se han actualizado correctamente']);
+            return Inertia::render('Profile/Index', [ 'user' => $user, 'success', 'Los datos se han actualizado correctamente']);
         
     }
 }

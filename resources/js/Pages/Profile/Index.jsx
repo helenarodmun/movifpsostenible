@@ -14,6 +14,7 @@ import imgProfile from "/resources/assets/img/blank-profile.jpg";
 
 export default function Index() {
     const { auth } = usePage().props;
+    console.log(auth)
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
             Editar perfil

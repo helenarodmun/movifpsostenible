@@ -52,5 +52,5 @@ Route::get('/editProfile', function () {
     return Inertia::render('Profile/Edit');
 });
 
-Route::get('/updateProfile',[UserController::class,'update'])->middleware('auth');
-Route::put('/updateProfile',[UserController::class,'update'])->middleware('auth');
+// Route::get('/updateProfile',[UserController::class,'update'])->middleware('auth');
+Route::post('/updateProfile',[UserController::class,'update'])->middleware('auth');
