@@ -30,11 +30,10 @@ class TravelUser extends Model
     /////////////////
    
     
-    // Cambia el estado del voto de un usuario para un enlace de la comunidad dado
-    public function bookingTravel($link)
+  public function toggleVote(Travel $travel)
     {
         // Busca el registro correspondiente al enlace y al usuario actual o crea uno nuevo si no existe
-        $booking = $this->firstOrNew(['user_id' => Auth::id(), 'travel_id' => $link]);
+        $booking = $this->firstOrNew(['user_id' => Auth::id(), 'travel_id' => $travel->id]);
         // Si el registro ya existe, significa que el usuario ya ha votado y quiere eliminar su voto
         if ($booking->id) {
             $booking->delete();
@@ -42,6 +41,5 @@ class TravelUser extends Model
         } else {
             $booking->save();
         }
-        dd($booking);
     }
 }
