@@ -24,11 +24,12 @@ class TravelForm extends FormRequest
     public function rules()
     {
         return [
-            'origin' => 'required',
-             'destination' => 'required',
-             'date'=> 'required|after_or_equal:date',
-             'hour' => 'required',
-             'seats' => 'required|digits_between:0,6'
+            'origin' => 'nullable',
+             'destination' => 'nullable',
+             'date'=> 'nullable|after_or_equal:date',
+             'hour' => 'nullable',
+             'seats' => 'nullable|digits_between:0,6',
+             'price' => 'nullable',
         ];
     }
 

@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TravelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //obtiene todos los registros de viajes de la base de datos y los envía a la plantilla de Inertia "Travels"
@@ -78,22 +74,31 @@ class TravelController extends Controller
         return Inertia::render('Travels/Search', compact('travels'));
     }
 
-    public function edit(Travel $travel)
-    {
-        //
-    }
+    public function show($id)
+{
+    $travel = Travel::findOrFail($id);
+    return Inertia::render('Profile/ModifyTravel', ['travel' => $travel]);
+}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Travel  $travel
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Travel $travel)
-    {
-        //
-    }
+
+   public function update(TravelForm $request, $id)
+{
+    //Valida los datos del formulario.
+    $validatedData = $request->validated();
+     
+    $travel = Travel::findOrFail($id);
+    $travel->origin = $validatedData['origin'];
+    $travel->destination = $validatedData['destination'];
+    $travel->date = $validatedData['date'];
+    $travel->hour = $validatedData['hour'];
+    $travel->seats = $validatedData['seats'];
+    $travel->price = $validatedData['price'];
+    $travel->save();
+   // Recupera todos los viajes del usuario después de guardar el viaje actualizado.
+   $travels = Auth::user()->travels;
+ // Redirige al perfil del usuario actualizado con un mensaje de éxito.
+ return Inertia::render('Profile/MyTravels', ['travels' => $travels]);
+}
 
     /**
      * Remove the specified resource from storage.

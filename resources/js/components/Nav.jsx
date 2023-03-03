@@ -24,27 +24,32 @@ function NavBar() {
                     </Nav.Item>
                     <Nav.Item>
                         <Nav.Link
-                            href="publish"
+                            href="/publish"
                             className="mx-2 bi bi-car-front"
                         >
                             Publica un viaje
                         </Nav.Link>
                     </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link href="login" className="mx-2 bi bi-door-open">
-                            Inicio de sesión
-                        </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link
-                            href="register"
-                            className="mx-2 bi bi-check-circle"
-                        >
-                            Registrarme
-                        </Nav.Link>
-                    </Nav.Item>
-
+                    {auth.user == null ? (
+                        <>
+                            <Nav.Item>
+                                <Nav.Link
+                                    href="/login"
+                                    className="mx-2 bi bi-door-open"
+                                >
+                                    Inicio de sesión
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link
+                                    href="/register"
+                                    className="mx-2 bi bi-check-circle"
+                                >
+                                    Registrarme
+                                </Nav.Link>
+                            </Nav.Item>
+                        </>
+                    ) : null}
                     {auth.user != null && (
                         <NavDropdown
                             title={auth.user.name}
@@ -52,11 +57,14 @@ function NavBar() {
                             className="mx-2"
                             align="end"
                         >
-                            <NavDropdown.Item
-                                href="#"
-                                className="bi bi-car-front"
-                            >
-                                Mis viajes
+                            <NavDropdown.Item>
+                                <Link
+                                    href="/usertravels"
+                                    as="button"
+                                    className="bi bi-car-front"
+                                >
+                                    Mis viajes
+                                </Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#" className="bi bi-chat">
                                 Mensajes
