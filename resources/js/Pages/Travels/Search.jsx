@@ -47,10 +47,10 @@ export default function Search() {
                             </Card.Text>
                             <Link href={"/travels/" + travel.id}>
                                 {" "}
-                                <Button variant="success" className="mb-3 mt-3">
+                                <Button variant="success" href={"/travels/" + travel.id} className="mb-3 mt-3">
                                     Reserva tu viaje!
                                 </Button>
-                            </Link>{" "}
+                            </Link>
                         </Card.Body>
                     </Card>
                 </Col>
