@@ -20,7 +20,7 @@ class UserController extends Controller
         }
        
         // Retorna la vista Inertia "User/EditProfile" con la información del usuario.
-        return Inertia::render('Profile/Edit');
+        return Inertia::render('Profile/Edit', ['users' => $user]);
     }
 
     // Actualiza el perfil de un usuario.
@@ -39,9 +39,9 @@ class UserController extends Controller
             $user->tags = $validatedData['tags'];
             // $user->password =  Hash::make($validatedData['password']);
             $user->save();
-            
+            $user->get();
             // Redirige al perfil del usuario actualizado con un mensaje de éxito.
-            return Inertia::render('Profile/Index', [ 'user' => $user, 'success', 'Los datos se han actualizado correctamente']);
+            return Inertia::render('Profile/Index', [ 'users' => $user, 'success', 'Los datos se han actualizado correctamente']);
         
     }
 }

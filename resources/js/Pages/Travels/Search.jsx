@@ -3,6 +3,7 @@ import React from "react";
 import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import Nav from "/resources/js/components/Nav";
 import Footer from "/resources/js/components/Footer";
+import { Link } from "@inertiajs/react";
 
 export default function Search() {
     const { travels } = usePage().props;
@@ -44,7 +45,7 @@ export default function Search() {
                                     </small>
                                 </ListGroup>
                             </Card.Text>
-                            <Link href={route('travels.')}>
+                            <Link href={"/travels/" + travel.id}>
                                 {" "}
                                 <Button variant="success" className="mb-3 mt-3">
                                     Reserva tu viaje!

@@ -29,7 +29,6 @@ class UserForm extends FormRequest
             'center' => 'nullable|string|max:20',
             'description' => 'nullable|string|max:255',
             'tags' => 'nullable',
-            'password' => 'nullable|string',
         ];
     }
 }

@@ -8,12 +8,11 @@ import { useState } from "react";
 export default function Index() {
     const { auth } = usePage().props;
     const { data, setData, post, processing, errors } = useForm({
-        name: '',
-        center: '',
-        email: '',
-        description: '',
-        tags: '',
-        password: ''
+        name: auth.user.name,
+        center: auth.user.center,
+        email: auth.user.email,
+        description: auth.user.description,
+        tags: auth.user.tags
     });
 
     function handleSubmit(e) {

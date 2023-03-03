@@ -38,7 +38,7 @@ export default function Index() {
                         <Form.Group className="mb-3 p-3">
                             <Form.Label>Centro educativo:</Form.Label>
                             <Form.Control
-                                placeholder={auth.user.centro}
+                                placeholder={auth.user.center}
                                 disabled
                             />
                         </Form.Group>

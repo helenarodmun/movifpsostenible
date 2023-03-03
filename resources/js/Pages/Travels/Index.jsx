@@ -8,7 +8,7 @@ export default function Index() {
     function myDate(fechaHora) {
         return dayjs(fechaHora).locale("es").format("DD MMMM YYYY - HH:mm:ss");
     }
-    function booking() {}
+    
     return (
         <>
             <Nav></Nav>
