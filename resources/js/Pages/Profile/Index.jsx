@@ -1,13 +1,5 @@
 import { Link, usePage } from "@inertiajs/react";
-import {
-    Container,
-    Row,
-    Col,
-    Button,
-    OverlayTrigger,
-    Tooltip,
-    Form,
-} from "react-bootstrap";
+import { Container,Row, Col, Button, OverlayTrigger, Tooltip, Form,} from "react-bootstrap";
 import Nav from "/resources/js/components/Nav";
 import Footer from "/resources/js/components/Footer";
 import imgProfile from "/resources/assets/img/blank-profile.jpg";

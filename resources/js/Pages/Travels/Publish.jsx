@@ -9,7 +9,8 @@ export default function Index() {
         destination: "",
         date: "",
         hour: "",
-        seats: ''
+        seats: '',
+        price: ''
     });
     function submit(e) {
         e.preventDefault();
@@ -149,6 +150,28 @@ export default function Index() {
                                         {errors.seats && (
                                             <div className="alert alert-danger">
                                                 {errors.seats}
+                                            </div>
+                                        )}
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label>Precio:</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            name="price"
+                                            placeholder="¿Que precio tiene el viaje?"
+                                            value={data.price}
+                                            onChange={(
+                                                e // si cambia el valor se seteara el valor nuevo en el constructor
+                                            ) =>
+                                                setData(
+                                                    "price",
+                                                    e.target.value
+                                                )
+                                            }
+                                        />
+                                        {errors.price && (
+                                            <div className="alert alert-danger">
+                                                {errors.price}
                                             </div>
                                         )}
                                     </Form.Group>

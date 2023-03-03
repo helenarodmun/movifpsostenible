@@ -36,6 +36,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    //relación que representa los viajes que ha publicado un usuario
+    public function travels()
+    {
+        return $this->hasMany(Travel::class);
+    }
     //relación entre user y travel, con el tiempo de creación y/o actualización de un registro
     public function bookings()
     {

@@ -3,11 +3,11 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Nav from "/resources/js/components/Nav";
 import Footer from "/resources/js/components/Footer";
 import imgProfile from "/resources/assets/img/blank-profile.jpg";
-import { useState } from "react";
+
 
 export default function Index() {
     const { auth } = usePage().props;
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, put, processing, errors } = useForm({
         name: auth.user.name,
         center: auth.user.center,
         email: auth.user.email,
@@ -17,7 +17,7 @@ export default function Index() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        post(
+        put(
             "/updateProfile",
             {
                 onSuccess: () => {
