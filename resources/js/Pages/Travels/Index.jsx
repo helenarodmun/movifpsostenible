@@ -32,7 +32,7 @@ export default function Index() {
                                         Asientos disponibles: {travel.seats}
                                     </span>
                                         {" "}
-                                        <Link href={"/travels/" + travel.id}>
+                                        {/* <Link href={"/travels/" + travel.id}> */}
                                         {" "}
                                         <Button
                                             variant="success"
@@ -40,7 +40,7 @@ export default function Index() {
                                         >
                                              Reserva tu viaje!
                                         </Button>
-                                    </Link>
+                                    {/* </Link> */}
                                 </Card.Body>
                                 <Card.Footer className="text-muted">
                                     Publicado por:{" "}
