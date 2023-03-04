@@ -8,7 +8,6 @@ import { Link } from "@inertiajs/react";
 
 export default function Search() {
     const { travels } = usePage().props;
- 
     function myDate(fechaHora) {
         return dayjs(fechaHora).format("DD MMMM YYYY - HH:mm:ss");
     }
@@ -31,10 +30,10 @@ export default function Search() {
                                 </Card.Header>
                                 <Card.Body>
                                     <span
-                                    ><i class="bi bi-calendar-check" title="Fecha del viaje"></i>   Fecha: {travel.date}</span>
+                                    ><i className="bi bi-calendar-check" title="Fecha del viaje"></i>   Fecha: {travel.date}</span>
                                     <br/>
                                     <span>
-                                    <i class="bi bi-clock" title="Hora del viaje"></i>   Hora: {travel.hour}</span>
+                                    <i className="bi bi-clock" title="Hora del viaje"></i>   Hora: {travel.hour}</span>
                                     <br/>
                                     <span>
                                          <i className="bi bi-people pe-3" title="Asientos disponibles"/>
@@ -42,13 +41,10 @@ export default function Search() {
                                     </span>
                                     <br/>
                                         <span>
-                                            <i class="bi bi-currency-euro" title="Asientos disponibles"></i>
+                                            <i className="bi bi-currency-euro" title="Asientos disponibles"></i>
                                         Precio: {travel.price}
                                     </span>
                                     <br/>
-                                        {" "}
-                                        {/* <Link href={"/travels/" + travel.id}> */}
-                                        {" "}
                                      <Link 
                                         method="post"
                                         href={"/booking/"+travel.id}>
@@ -57,9 +53,6 @@ export default function Search() {
                                             className="mb-3 mt-3" >Reserva tu viaje! 
                                             </Button> 
                                         </Link>
-                                             
-                                       
-                                    {/* </Link> */}
                                 </Card.Body>
                                 <Card.Footer className="text-muted">
                                     <i className="bi bi-person-circle pe-3" title="Conductor"></i>

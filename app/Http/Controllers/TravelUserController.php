@@ -26,6 +26,6 @@ class TravelUserController extends Controller
 
         // Obtener la lista actualizada de viajes y pasarla a la vista
     $travels = Travel::with('driver')->orderBy('updated_at', 'DESC')->get();
-    return Inertia::render('Travels/Search', ['travels' => $travels]);
+    return Inertia::location('Travel/Sarch', ['travels' => $travels]);
     }
 }
