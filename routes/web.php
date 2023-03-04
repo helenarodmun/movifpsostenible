@@ -52,3 +52,5 @@ Route::get('/modifytravel/{id}',  [TravelController::class, 'show'])->middleware
 
 Route::put('/modifytravel/{id}', [TravelController::class, 'update'])->middleware('auth');
 Route::delete('/deletetravel/{id}', [TravelController::class, 'destroy'])->middleware('auth');
+
+Route::post('/booking/{id}', [TravelUserController::class, 'store'])->middleware('auth');

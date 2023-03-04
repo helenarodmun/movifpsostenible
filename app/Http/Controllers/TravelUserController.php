@@ -6,15 +6,26 @@ use App\Models\Travel;
 use App\Models\TravelUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class TravelUserController extends Controller
 {
-    //TODO:
-    // public function store(Travel $travel, TravelUser $booking)
-    // {
-    //     // Se llama al método toggleVote de la instancia de CommunityLinkUser para que el usuario actual vote o quite el voto del enlace de la comunidad pasado como argumento.
-    //     $booking->toggleVote($travel);
-    //     // El usuario es redirigido a la página anterior.
-    //     return back();
-    // }
+    //función que crea un registro nuevo en la tabla pivote con el id del usuario y el id del viaje que se ha reservado
+    public function store($id)
+    {
+        // Guardar reserva
+        $booking = new TravelUser;
+        $booking->user_id = Auth::id();
+        $booking->travel_id = $id;
+        $booking->save();
+
+        // Restar una plaza a los asientos disponibles
+        $travel = Travel::find($id);
+        $travel->seats = $travel->seats - 1;
+        $travel->save();
+
+        // Obtener la lista actualizada de viajes y pasarla a la vista
+    $travels = Travel::with('driver')->orderBy('updated_at', 'DESC')->get();
+    return Inertia::render('Travels/Search', ['travels' => $travels]);
+    }
 }

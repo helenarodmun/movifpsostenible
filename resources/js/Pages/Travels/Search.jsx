@@ -8,9 +8,11 @@ import { Link } from "@inertiajs/react";
 
 export default function Search() {
     const { travels } = usePage().props;
+ 
     function myDate(fechaHora) {
         return dayjs(fechaHora).format("DD MMMM YYYY - HH:mm:ss");
     }
+ 
     return (
         <>
             <Nav />
@@ -47,12 +49,16 @@ export default function Search() {
                                         {" "}
                                         {/* <Link href={"/travels/" + travel.id}> */}
                                         {" "}
-                                        <Button
+                                     <Link 
+                                        method="post"
+                                        href={"/booking/"+travel.id}>
+                                          <Button
                                             variant="success"
-                                            className="mb-3 mt-3"
-                                        >
-                                             Reserva tu viaje!
-                                        </Button>
+                                            className="mb-3 mt-3" >Reserva tu viaje! 
+                                            </Button> 
+                                        </Link>
+                                             
+                                       
                                     {/* </Link> */}
                                 </Card.Body>
                                 <Card.Footer className="text-muted">
