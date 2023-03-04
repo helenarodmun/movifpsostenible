@@ -3,10 +3,13 @@ import { useState } from "react";
 import {  Button, Form, Nav, Container, Row, Col, Card } from "react-bootstrap";
 
 export default function ModifyTravel(props) {
+    // Obtener la información del viaje desde las props de la página utilizando usePage()
      const { travel } = usePage().props;
      console.log(props)
+     // Estado local para controlar el envío del formulario
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const { data, setData, put, processing, errors } = useForm({
+    // Usar useForm() para crear un formulario controlado con valores iniciales predefinidos
+    const { data, setData, put, delete:destroy, processing, errors } = useForm({
         origin: travel.origin,
         destination: travel.destination,
         date: travel.date,
@@ -14,9 +17,11 @@ export default function ModifyTravel(props) {
         seats: travel.seats,
         price: travel.price,
     });
+     // Función para manejar el envío del formulario
     function handleSubmit(e) {
         e.preventDefault();
         setIsSubmitting(true);
+        // Llamar a la función put() para enviar una solicitud PUT al servidor con los nuevos datos del viaje
         put(
             `/modifytravel/${travel.id}`,
             {
@@ -27,6 +32,22 @@ export default function ModifyTravel(props) {
         );
         setIsSubmitting(false);
     }
+    // Función para manejar la eliminación del viaje
+    function handleSubmit(e) {
+        e.preventDefault();
+        setIsSubmitting(true);
+        // Llamar a la función delete() para enviar una solicitud DELETE al servidor y eliminar el viaje
+        destroy(
+            `/deletetravel/${travel.id}`,
+            {
+                onSuccess: () => {
+                    console.log(data); },
+            },            
+            data            
+        );
+        setIsSubmitting(false);
+    }
+
 
     return (
         <>
@@ -165,7 +186,12 @@ export default function ModifyTravel(props) {
                                 type="submit"
                                 variant="danger"
                                 aria-label="Eliminar los datos del viaje"
-                            >
+                                onClick={handleSubmit} 
+                                >
+                                  {isSubmitting
+                                       ? "Eliminando..."
+                                       : "Registro eliminado"}
+                            
                                 Eliminar
                             </Button>
                             </Card.Footer>

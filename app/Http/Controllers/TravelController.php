@@ -14,36 +14,20 @@ class TravelController extends Controller
 
     public function index()
     {
-        //obtiene todos los registros de viajes de la base de datos y los envía a la plantilla de Inertia "Travels"
-        // $travels = Travel::all();
-        // return Inertia::render('/travels/index');
+
+        // Obtener la lista de viajes con la información del conductor utilizando Eloquent ORM
         $travels = Travel::with('driver')
             ->latest()
             ->get();
+        // Obtener la lista de reservas de viajes
         $booking = TravelUser::get()->all();
-        // dd($travels);
+        // Renderizar la vista "Travels/Index" utilizando Inertia.js y pasarle los datos obtenidos
         return Inertia::render('Travels/Index', [
             'travels' => $travels,
             'booking' => $booking,
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(TravelForm $request)
     {
         $request->validated();
@@ -63,51 +47,60 @@ class TravelController extends Controller
     // Si se encuentra, muestra la vista travels/search con los datos del viaje. Si no se encuentra, regresa a la vista anterior y muestra un mensaje de error
     public function search(Request $request)
     {
+        // Obtener los datos enviados por el usuario mediante la solicitud POST
         $data = $request;
-        $travels = Travel::where('origin', $data['origin'])
+        // Buscar los viajes que coincidan con los criterios de búsqueda
+        $travels = Travel::where('origin', $data['origin']) // Buscar viajes con el origen especificado
             ->orWhere('destination', $data['destination'])
             ->orWhere('date', $data['date'])
-            ->with('driver')
-            ->latest()
-            ->get()
-            ->all();
-        return Inertia::render('Travels/Search', compact('travels'));
+            ->with('driver') // Incluir la información del conductor del viaje en la consulta
+            ->latest() // Ordenar los resultados por fecha de forma descendente (los viajes más recientes primero)
+            ->get() // Obtener los resultados
+            ->all(); // Convertir la colección de resultados en un array
+        // Devolver la vista con los resultados de la búsqueda
+        return Inertia::render('Travels/Search', ['travel' => $travels]);
+    }
+    //recibe un parámetro $id que es el identificador del viaje que se desea mostrar
+    public function show($id)
+    {
+        // Buscar el registro de viaje con el id proporcionado
+        $travel = Travel::findOrFail($id);
+        // Renderizar la plantilla 'Profile/ModifyTravel' y pasar la información del viaje como prop
+        return Inertia::render('Profile/ModifyTravel', ['travel' => $travel]);
     }
 
-    public function show($id)
-{
-    $travel = Travel::findOrFail($id);
-    return Inertia::render('Profile/ModifyTravel', ['travel' => $travel]);
-}
 
-
-   public function update(TravelForm $request, $id)
-{
-    //Valida los datos del formulario.
-    $validatedData = $request->validated();
-     
-    $travel = Travel::findOrFail($id);
-    $travel->origin = $validatedData['origin'];
-    $travel->destination = $validatedData['destination'];
-    $travel->date = $validatedData['date'];
-    $travel->hour = $validatedData['hour'];
-    $travel->seats = $validatedData['seats'];
-    $travel->price = $validatedData['price'];
-    $travel->save();
-   // Recupera todos los viajes del usuario después de guardar el viaje actualizado.
-   $travels = Auth::user()->travels;
- // Redirige al perfil del usuario actualizado con un mensaje de éxito.
- return Inertia::render('Profile/MyTravels', ['travels' => $travels]);
-}
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Travel  $travel
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Travel $travel)
+    public function update(TravelForm $request, $id)
     {
-        //
+        // Valida los datos del formulario utilizando las reglas definidas en TravelForm.
+        $validatedData = $request->validated();
+        // Busca el viaje a actualizar por su ID.
+        $travel = Travel::findOrFail($id);
+        // Actualiza los campos del viaje con los datos validados del formulario.
+        $travel->origin = $validatedData['origin'];
+        $travel->destination = $validatedData['destination'];
+        $travel->date = $validatedData['date'];
+        $travel->hour = $validatedData['hour'];
+        $travel->seats = $validatedData['seats'];
+        $travel->price = $validatedData['price'];
+        // Guarda el viaje actualizado en la base de datos.
+        $travel->save();
+        // Recupera todos los viajes del usuario después de guardar el viaje actualizado.
+        $travels = Auth::user()->travels;
+        // Redirige al perfil del usuario actualizado.
+        return Inertia::render('Profile/MyTravels', ['travels' => $travels]);
+    }
+
+
+    public function destroy($id)
+    {
+        // Busca el viaje por su ID
+        $travel = Travel::findOrFail($id);
+        // Elimina el viaje
+        $travel->delete();
+        // Recupera todos los viajes del usuario después de guardar el viaje actualizado.
+        $travels = Auth::user()->travels;
+        // Redirige al perfil del usuario actualizado con una lista actualizada de sus viajes.
+        return Inertia::render('Profile/MyTravels', ['travels' => $travels]);
     }
 }

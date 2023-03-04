@@ -51,3 +51,4 @@ Route::get('/otheruser/{user}', [UserController::class, 'showOtherUserTravels'])
 Route::get('/modifytravel/{id}',  [TravelController::class, 'show'])->middleware('auth');
 
 Route::put('/modifytravel/{id}', [TravelController::class, 'update'])->middleware('auth');
+Route::delete('/deletetravel/{id}', [TravelController::class, 'destroy'])->middleware('auth');
