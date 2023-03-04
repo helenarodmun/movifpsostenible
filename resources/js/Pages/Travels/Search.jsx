@@ -3,6 +3,7 @@ import React from "react";
 import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import Nav from "/resources/js/components/Nav";
 import Footer from "/resources/js/components/Footer";
+import FilterHeader from "/resources/js/components/FilterHeader";
 import { Link } from "@inertiajs/react";
 
 export default function Search() {
@@ -13,7 +14,8 @@ export default function Search() {
     return (
         <>
             <Nav />
-            <h1 className="m-5">Viajes</h1>
+            <FilterHeader></FilterHeader>
+            <h1 className="m-5">VIAJES ENCONTRADOS</h1>
             {travels.map((travel) => (
                 <Col key={travel.id} md={6}>
                     {" "}

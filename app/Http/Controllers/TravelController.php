@@ -53,12 +53,15 @@ class TravelController extends Controller
         $travels = Travel::where('origin', $data['origin']) // Buscar viajes con el origen especificado
             ->orWhere('destination', $data['destination'])
             ->orWhere('date', $data['date'])
+            // ->orWhere('hour','=', $data['hour'])
+            // ->orWhere('seats','=', $data['seats'])
+            // ->orWhere('price','=', $data['price'])
             ->with('driver') // Incluir la información del conductor del viaje en la consulta
             ->latest() // Ordenar los resultados por fecha de forma descendente (los viajes más recientes primero)
             ->get() // Obtener los resultados
             ->all(); // Convertir la colección de resultados en un array
         // Devolver la vista con los resultados de la búsqueda
-        return Inertia::render('Travels/Search', ['travel' => $travels]);
+        return Inertia::render('Travels/Search', ['travels' => $travels]);
     }
     //recibe un parámetro $id que es el identificador del viaje que se desea mostrar
     public function show($id)

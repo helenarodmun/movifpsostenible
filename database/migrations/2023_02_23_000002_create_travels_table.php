@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('destination', 45);
             $table->date('date');
             $table->time('hour');
-            $table->decimal('price')->nullable();            
+            $table->decimal('price');            
             $table->unsignedTinyInteger('seats')->unsigned();
             $table->timestamps();
         });

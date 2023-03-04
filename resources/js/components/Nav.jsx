@@ -18,7 +18,9 @@ function NavBar() {
                         </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="#" className="mx-2 bi bi-search">
+                        <Nav.Link 
+                            href="/search" 
+                         className="mx-2 bi bi-search">
                             Buscar
                         </Nav.Link>
                     </Nav.Item>

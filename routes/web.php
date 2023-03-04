@@ -27,7 +27,7 @@ Route::get('travels', [TravelController::class, 'index']);
 
 Route::get('/publish',function(){
 return Inertia::render('Travels/Publish');
-});
+})->middleware('auth');
 
 Route::post('/publish',[TravelController::class,'store']);
 
