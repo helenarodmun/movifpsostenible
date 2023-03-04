@@ -40,7 +40,9 @@ class TravelController extends Controller
         $travels = Travel::with('driver')
             ->latest()
             ->get();
-        return Inertia::render('Travels/Index', ['travels' => $travels]);
+            
+        return Inertia::render('Travels/Index', ['travels' => $travels])
+            ->with('message', '¡Nuevo viaje creado con éxito!');
     }
 
     //recibe los datos enviados por el usuario, los valida y busca el registro correspondiente en la base de datos.

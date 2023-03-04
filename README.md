@@ -88,3 +88,5 @@ Instala el paquete de Inertia. Si obtienes algún error por problemas de version
 ## Tabla pivote
 
 - se ha creado la tabla pivote travel_users, y se han añadido a los modelos las relaciones pertinentes
+
+## Otras tareas realizadas

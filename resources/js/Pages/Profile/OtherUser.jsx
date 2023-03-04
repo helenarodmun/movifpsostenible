@@ -65,15 +65,15 @@ export default function Index() {
                                     Destino: {travel.destination}
                                 </Card.Header>
                                 <Card.Body>
-                                    <span>Fecha: {travel.date}</span>
+                                    <span><i class="bi bi-calendar-check" itle="Fecha del viaje"></i>    Fecha: {travel.date}</span>
                                     <br/>
-                                    <span>Hora: {travel.hour}</span>
+                                    <span><i class="bi bi-clock" title="Hora del viaje"></i>  Hora: {travel.hour}</span>
                                     <br/>
-                                    <span>
+                                    <span><i className="bi bi-people pe-3" title="Asientos disponibles" />
                                         Asientos disponibles: {travel.seats}
                                     </span>
                                     <br/>
-                                    <span>
+                                    <span>  <i class="bi bi-currency-euro" title="Precio del viaje"></i>
                                         Precio: {travel.price}
                                     </span>
                                 </Card.Body>

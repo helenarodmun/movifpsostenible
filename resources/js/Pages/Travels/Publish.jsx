@@ -1,8 +1,9 @@
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 import React from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import Nav from "../../components/Nav";
-export default function Index() {
+export default function Index({children}) {
+    const { flash } = usePage().props
     // useForm es un helper diseñado para formularios
     const { data, setData, post, processing, errors } = useForm({
         origin: "",
@@ -30,17 +31,21 @@ export default function Index() {
         <>
             <Nav></Nav>
             <Container>
+            {flash.message && (
+          <div class="alert">{flash.message}</div>
+        )}
+        {children}
                 <Row>
-                    <Col md={8}>
+                    <Col md={6} >
                         <Card>
                             <Card.Header>
                                 <h3>Publica un viaje</h3>
                             </Card.Header>
-                            <Card.Body>
-                                <Form  onSubmit={submit}>
+                            <Card.Body >
+                                <Form  onSubmit={submit}  >
                                     <Form.Group>
                                         <Form.Label>Origen:</Form.Label>
-                                        <Form.Control
+                                        <Form.Control 
                                             type="text"
                                             name="origin"
                                             placeholder="¿Cuál va a ser el punto de partida?"
@@ -60,9 +65,9 @@ export default function Index() {
                                             </div>
                                         )}
                                     </Form.Group>
-                                    <Form.Group>
+                                    <Form.Group className='m-2'>
                                         <Form.Label>Destino:</Form.Label>
-                                        <Form.Control
+                                        <Form.Control 
                                             type="text"
                                             name="destination"
                                             placeholder="¿Cuál va a ser el destino del viaje?"

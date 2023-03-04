@@ -5,8 +5,11 @@ import Footer from "/resources/js/components/Footer";
 import imgProfile from "/resources/assets/img/blank-profile.jpg";
 
 export default function Index() {
+     // Obtenemos la propiedad "auth" de las props de la página utilizando el hook "usePage"
     const { auth } = usePage().props;
     console.log(auth)
+    // Creamos una función llamada "renderTooltip" que recibe un objeto "props"
+    // Esta función retorna un componente "Tooltip" de Bootstrap que muestra el mensaje "Editar perfil" cuando el usuario coloca el cursor sobre un botón
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
             Editar perfil
@@ -56,10 +59,12 @@ export default function Index() {
                             />
                         </Form.Group>
                         <>
+                            {/* OverlayTrigger envuelve el botón y la herramienta de información sobre herramientas y 
+                            muestra la herramienta de información sobre herramientas cuando el usuario pasa el cursor sobre el botón */}
                             <OverlayTrigger
-                                placement="bottom"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltip}
+                                placement="bottom"// coloca la herramienta de información sobre herramientas debajo del botón
+                                delay={{ show: 250, hide: 400 }}// establece un retraso antes de que se muestre la herramienta de información sobre herramientas
+                                overlay={renderTooltip}// especifica qué función se usa para renderizar la herramienta de información sobre herramientas
                             >
                                 <Button className="btn btn-secondary  m-3">
                                 <Link

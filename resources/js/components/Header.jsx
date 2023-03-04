@@ -12,7 +12,7 @@ function Header() {
 });
 function submit(e) {
     e.preventDefault();
-    // post puede recibir un parametro de parametros donde puedes complementar la funcion con mas funciones, en este caso, si se hace bien el post se sube la data a la consola
+    // Utilizar la función get del hook useForm para hacer una solicitud POST a la ruta /search
     get(
         "/search",
         {

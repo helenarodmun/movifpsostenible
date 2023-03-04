@@ -1,8 +1,9 @@
 import { useForm, usePage, Link} from "@inertiajs/react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import Nav from "../../components/Nav";
+
 export default function Index() {
-    const { travels, booking } = usePage().props;
+    const { travels, flash, booking } = usePage().props;
     function myDate(fechaHora) {
         return dayjs(fechaHora).locale("es").format("DD MMMM YYYY - HH:mm:ss");
     }
@@ -11,6 +12,9 @@ export default function Index() {
         <>
             <Nav></Nav>
             <Container>
+            {flash.message && (
+          <div class="alert">{flash.message}</div>
+        )}
                 <Row>
                     <h1 className="m-5">Viajes</h1>
                     {console.log(booking)}
@@ -23,15 +27,15 @@ export default function Index() {
                                     Destino: {travel.destination}
                                 </Card.Header>
                                 <Card.Body>
-                                    <span>Fecha: {travel.date}</span>
+                                    <span><i class="bi bi-calendar-check"  title="Fecha del viaje"></i>   Fecha: {travel.date}</span>
                                     <br/>
-                                    <span>Hora: {travel.hour}</span>
+                                    <span><i class="bi bi-clock" title="Hora del viaje"></i> Hora: {travel.hour}</span>
                                     <br/>
-                                    <span>
+                                    <span><i className="bi bi-people pe-3" title="Asientos disponibles" />
                                         Asientos disponibles: {travel.seats}
                                     </span>
                                     <br/>
-                                        <span>
+                                        <span> <i class="bi bi-currency-euro" title="Asientos disponibles"></i>
                                         Precio: {travel.price}
                                     </span>
                                     <br/>
@@ -47,6 +51,7 @@ export default function Index() {
                                     {/* </Link> */}
                                 </Card.Body>
                                 <Card.Footer className="text-muted">
+                                <i className="bi bi-person-circle pe-3" title="Conductor"></i>
                                     Publicado por:{" "}
                                     <a
                                         href={"/otheruser/"+ travel.driver.id}

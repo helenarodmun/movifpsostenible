@@ -6,29 +6,23 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserForm extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+    
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
+   
     public function rules()
     {
+        // Define las reglas de validación para cada campo del formulario.
         return [
-            'name' => 'nullable|string',
-            'email' => 'nullable|string|email|max:255',
-            'center' => 'nullable|string|max:20',
-            'description' => 'nullable|string|max:255',
-            'tags' => 'nullable',
+            'name' => 'nullable|string', // El campo de nombre es opcional y debe ser una cadena de caracteres.
+            'email' => 'nullable|string|email|max:255', // El campo de correo electrónico es opcional y debe ser una dirección de correo electrónico válida con un máximo de 255 caracteres.
+            'center' => 'nullable|string|max:20', // El campo de centro es opcional y debe ser una cadena de caracteres con un máximo de 20 caracteres.
+            'description' => 'nullable|string|max:255', // El campo de descripción es opcional y debe ser una cadena de caracteres con un máximo de 255 caracteres.
+            'tags' => 'nullable', // El campo de etiquetas es opcional.
         ];
     }
+    
 }

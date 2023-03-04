@@ -33,6 +33,16 @@ function Footer() {
                 <a href="#!"><i className="bi-instagram fs-3" /></a>
               </li>
             </ul>
+            <div className='footer__license'>
+            <img alt='Creative Commons Licence, CineAdicto by Juan Pablo Cabrillana y Helena Rodríguez' src='https://i.creativecommons.org/l/by/4.0/88x31.png' />
+         
+          <br />
+          <p>MoviFPSostenible</p> by <span>Juan Pablo Cabrillana y Helena Rodríguez</span> is licensed under a{' '}
+          <a rel='license' className='license' href='http://creativecommons.org/licenses/by/4.0/'>
+            Creative Commons Attribution 4.0 International License
+          </a>
+          .
+        </div>
           </Col>
         </Row>
       </Container>

@@ -11,6 +11,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ 
 :root {
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
@@ -12346,3 +12347,12 @@ footer.footer {
     padding-top: 4rem;
     padding-bottom: 4rem;
 }
+.pagination button {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+  }

@@ -6,7 +6,9 @@ import imgProfile from "/resources/assets/img/blank-profile.jpg";
 
 
 export default function Index() {
+    // Obtener la información de autenticación del usuario desde las props de la página actual
     const { auth } = usePage().props;
+    // Declarar un estado interno de formularios utilizando el hook useForm, inicializarlo con los datos del usuario autenticado
     const { data, setData, put, processing, errors } = useForm({
         name: auth.user.name,
         center: auth.user.center,
@@ -14,9 +16,10 @@ export default function Index() {
         description: auth.user.description,
         tags: auth.user.tags
     });
-
+    // Función manejadora de envío del formulario
     function handleSubmit(e) {
         e.preventDefault();
+        // Realizar una solicitud PUT a la ruta "/updateProfile" con los datos del formulario
         put(
             "/updateProfile",
             {

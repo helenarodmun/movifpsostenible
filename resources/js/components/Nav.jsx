@@ -4,6 +4,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "@inertiajs/react";
 
 function NavBar() {
+    // Se obtiene la autenticación del usuario de las props de la página
     const { auth } = usePage().props;
 
     return (
@@ -32,6 +33,7 @@ function NavBar() {
                             Publica un viaje
                         </Nav.Link>
                     </Nav.Item>
+                    {/* Si el usuario no ha iniciado sesión, se muestra el botón de inicio de sesión y el de registro */}
                     {auth.user == null ? (
                         <>
                             <Nav.Item>
@@ -52,6 +54,7 @@ function NavBar() {
                             </Nav.Item>
                         </>
                     ) : null}
+                     {/* Si el usuario ha iniciado sesión, se muestra el menú desplegable con opciones */}
                     {auth.user != null && (
                         <NavDropdown
                             title={auth.user.name}
@@ -62,7 +65,7 @@ function NavBar() {
                             <NavDropdown.Item>
                                 <Link
                                     href="/usertravels"
-                                    as="button"
+                                    as='button'
                                     className="bi bi-car-front"
                                 >
                                     Mis viajes
@@ -73,12 +76,14 @@ function NavBar() {
                             </NavDropdown.Item>
                             <NavDropdown.Item
                                 href="#"
+                                as='button'
                                 className="bi bi-credit-card"
                             >
                                 Pagos
                             </NavDropdown.Item>
                             <NavDropdown.Item
                                 href="/profile"
+                                as='button'
                                 className="bi bi-person-circle"
                             >
                                 Perfil
@@ -87,8 +92,8 @@ function NavBar() {
                             <NavDropdown.Item>
                                 <Link
                                     href="/logout"
+                                    as='button'
                                     method="post"
-                                    as="button"
                                     className="bi bi-door-closed"
                                 >
                                     Cerrar sesión
