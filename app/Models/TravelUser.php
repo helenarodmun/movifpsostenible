@@ -25,21 +25,9 @@ class TravelUser extends Model
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
-    
 
-    /////////////////
-   
-    //TODO:
-//   public function toggleVote(Travel $travel)
-//     {
-//         // Busca el registro correspondiente al enlace y al usuario actual o crea uno nuevo si no existe
-//         $booking = $this->firstOrNew(['user_id' => Auth::id(), 'travel_id' => $travel->id]);
-//         // Si el registro ya existe, significa que el usuario ya ha votado y quiere eliminar su voto
-//         if ($booking->id) {
-//             $booking->delete();
-//         // Si el registro no existe, significa que el usuario aún no ha votado y quiere añadir su voto
-//         } else {
-//             $booking->save();
-//         }
-//     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -20,11 +20,11 @@ class TravelController extends Controller
             ->latest()
             ->get();
         // Obtener la lista de reservas de viajes
-        $booking = TravelUser::get()->all();
+        $reservations = TravelUser::get()->all();
         // Renderizar la vista "Travels/Index" utilizando Inertia.js y pasarle los datos obtenidos
         return Inertia::render('Travels/Index', [
             'travels' => $travels,
-            'booking' => $booking,
+            'reservations' => $reservations,
         ]);
     }
 
@@ -40,9 +40,7 @@ class TravelController extends Controller
         $travels = Travel::with('driver')
             ->latest()
             ->get();
-            
-        return Inertia::render('Travels/Index', ['travels' => $travels])
-            ->with('message', '¡Nuevo viaje creado con éxito!');
+        return Inertia::render('Travels/Index', ['travels' => $travels]);
     }
 
     //recibe los datos enviados por el usuario, los valida y busca el registro correspondiente en la base de datos.

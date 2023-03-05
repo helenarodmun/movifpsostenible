@@ -42,15 +42,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Travel::class);
     }
     //relación entre user y travel, con el tiempo de creación y/o actualización de un registro
-    public function bookings()
+    public function travelUsers()
     {
         return $this->belongsToMany(Travel::class)->withTimestamps();
     }
-
+  
+    
     //Devuelve booleano en función si el usuario ha reservado un viaje
     public function reservedBy(Travel $travel)
     {
-        return $this->bookings->contains($travel);
+        return $this->travelUsers->contains($travel);
     }
 
 

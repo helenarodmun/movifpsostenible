@@ -18,7 +18,7 @@ class TravelUserController extends Controller
     {
         // Guardar reserva
         $order = new TravelUser;
-        $order->user_id = Auth::id();
+        $order->user_id = Auth::user()->id;
         $order->travel_id = $request->id;
         $order->save();
 
@@ -26,9 +26,46 @@ class TravelUserController extends Controller
         $travel = Travel::find($request->id);
         $travel->seats = $travel->seats - 1;
         $travel->save();
-        Mail::to($request->user())->send(new BookingConfirmation($order));
+        // Mail::to($request->user())->send(new BookingConfirmation($order));
         // Obtener la lista actualizada de viajes y pasarla a la vista
-    $travels = Travel::with('driver')->orderBy('updated_at', 'DESC')->get();
-    return Inertia::render('Travels/Search', ['travels' => $travels]);
+        $travels = Travel::with('driver')->orderBy('updated_at', 'DESC')->get();
+        //Auth::user() devuelve el modelo de usuario autenticado actualmente.
+        //Auth::user()->travelUsers devuelve una colección de modelos TravelUser relacionados con el usuario actualmente autenticado, o null si no hay ninguna relación.
+        //El operador ternario ? : se utiliza para verificar si la colección de modelos es null o no. Si no es null,es decir, el usuario tiene  una reserva,
+        // se llama al método pluck() para extraer los IDs de viaje de los modelos de TravelUser, y se convierte el resultado a un array. Si  es null, se asigna un array vacio para que no de error en la vista vacío.
+
+        $reservations = Auth::user()->travelUsers ? Auth::user()->travelUsers->pluck('travel_id')->toArray() : [];
+
+        return Inertia::render('Travels/Search', [
+            'travels' => $travels,
+            'reservations' => $reservations,
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $travelUser = TravelUser::find($id);
+
+        // Si la reserva no existe, retornamos un error 404
+        if (!$travelUser) {
+            abort(404);
+        }
+
+        $travel = Travel::find($travelUser->travel_id);
+
+        // Aumentamos en uno el número de asientos disponibles
+        $travel->increment('seats');
+
+        // Eliminamos el registro de TravelUser correspondiente
+        $travelUser->delete();
+
+        // Volvemos a buscar los viajes y las reservas actualizadas
+        $travels = Travel::with('driver')->orderBy('updated_at', 'DESC')->get();
+        $reservations = Auth::user()->travelUsers->pluck('travel_id')->toArray();
+
+        return Inertia::render('Travels/Search', [
+            'travels' => $travels,
+            'reservations' => $reservations,
+        ]);
     }
 }

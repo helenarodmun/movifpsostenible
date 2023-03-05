@@ -55,6 +55,7 @@ Route::put('/modifytravel/{id}', [TravelController::class, 'update'])->middlewar
 Route::delete('/deletetravel/{id}', [TravelController::class, 'destroy'])->middleware('auth');
 
 Route::post('/booking/{id}', [TravelUserController::class, 'store'])->middleware('auth');
+Route::delete('/booking/{id}', [TravelUserController::class, 'destroy'])->middleware('auth');
 
 // Route::get('enviar', ['as' => 'enviar', function () {
 //     $data = ['link' => 'http://styde.net'];

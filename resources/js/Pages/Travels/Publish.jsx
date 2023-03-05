@@ -19,7 +19,7 @@ export default function Index({children}) {
     function handleSubmit(e) {
         e.preventDefault();
         setIsSubmitting(true);
-        // post puede recibir un parametro de parametros donde puedes complementar la funcion con mas funciones, en este caso, si se hace bien el post se sube la data a la consola
+      
         post(
             "/publish",
             {
