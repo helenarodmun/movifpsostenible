@@ -1,5 +1,5 @@
-import { useForm, usePage, Link} from "@inertiajs/react";
-import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import {  usePage, Link} from "@inertiajs/react";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 
@@ -12,7 +12,7 @@ export default function Index() {
     return (
         <>
             <Nav></Nav>
-            <Container>
+            <Container className="accesibilidad-texto">
             {flash.message && (
           <div class="alert">{flash.message}</div>
         )}

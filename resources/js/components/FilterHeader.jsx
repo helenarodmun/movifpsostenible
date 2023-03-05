@@ -30,18 +30,18 @@ function submit(e) {
 }
   return (
     <header className="masthead">
-      <Container className="position-relative ">
+      <Container className="position-relative accesibilidad-texto">
         <Row className="justify-content-center ">
           <Col  >
             <div sm={6} className="text-center text-white ">
               {/* Page heading*/}
-              <h1 className="mb-5">!Ahora puedes buscar tu viaje de forma mas personalizada!</h1>
-              <h2 className="mb-5"> Busqueda avanzada</h2>
+              <h1 className="mb-5 accesibilidad-texto">!Ahora puedes buscar tu viaje de forma mas personalizada!</h1>
+              <h2 className="mb-5 accesibilidad-texto"> Busqueda avanzada</h2>
               <Form   method="POST" onSubmit={submit} className="form-subscribe" id="contactForm" >
                 <Row className='m-5'>
                   {/* Departure */}
                   <Col style={{flex: '1.5 0 0%'}}>
-                    <Form.Control 
+                    <Form.Control aria-label='Origen que se quiere buscar'
                     className="form-control-lg" 
                     id="origin" 
                     name="origin" 
@@ -60,7 +60,7 @@ function submit(e) {
                   </Col>
                   {/* Destination */}
                   <Col style={{flex: '1.5 0 0%'}}>
-                    <Form.Control 
+                    <Form.Control aria-label='Destino que se quiere buscar'
                     className="form-control-lg" 
                     id="destination" 
                     name="destination" 
@@ -79,7 +79,7 @@ function submit(e) {
                   </Col>
                   {/* Date*/}
                   <Col style={{flex: '1 0 0%'}}>
-                    <Form.Control className="form-control-lg" id="date" name="date" type="date" 
+                    <Form.Control  aria-label='fecha que se quiere buscar'className="form-control-lg" id="date" name="date" type="date" 
                      value={data.date} // el valor del imput lo sacara del constructor 
                      onChange={(e) => // si cambia el valor se seteara el valor nuevo en el constructor
                          setData(
@@ -92,7 +92,7 @@ function submit(e) {
                     </Form.Control.Feedback>
                   </Col>
                   <Col style={{flex: '1 0 0%'}}>
-                    <Form.Control className="form-control-lg" id="hour" name="hour" type="time" 
+                    <Form.Control aria-label='Hora que se quiere buscar' className="form-control-lg" id="hour" name="hour" type="time" 
                      value={data.hour} // el valor del imput lo sacara del constructor 
                      onChange={(e) => // si cambia el valor se seteara el valor nuevo en el constructor
                          setData(
@@ -105,7 +105,7 @@ function submit(e) {
                     </Form.Control.Feedback>
                   </Col>
                   <Col style={{flex: '1 0 0%'}}>
-                    <Form.Control className="form-control-lg" id="seats" name="seats" type="number" 
+                    <Form.Control aria-label='buscar por numero de asientos'className="form-control-lg" id="seats" name="seats" type="number" 
                      value={data.seats} // el valor del imput lo sacara del constructor 
                      onChange={(e) => // si cambia el valor se seteara el valor nuevo en el constructor
                          setData(
@@ -118,7 +118,7 @@ function submit(e) {
                     </Form.Control.Feedback>
                   </Col>
                   <Col style={{flex: '1 0 0%'}}>
-                    <Form.Control className="form-control-lg" id="price" name="price" type="number" 
+                    <Form.Control aria-label='buscar por precio'className="form-control-lg" id="price" name="price" type="number" 
                      value={data.price} // el valor del imput lo sacara del constructor 
                      onChange={(e) => // si cambia el valor se seteara el valor nuevo en el constructor
                          setData(

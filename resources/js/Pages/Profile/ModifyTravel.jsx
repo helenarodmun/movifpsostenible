@@ -3,6 +3,7 @@ import { useState } from "react";
 import {  Button, Form, Container, Row, Col, Card } from "react-bootstrap";
 import Nav from "/resources/js/components/Nav";
 import Footer from "/resources/js/components/Footer";
+
 export default function ModifyTravel(props) {
     // Obtener la información del viaje desde las props de la página utilizando usePage()
      const { travel } = usePage().props;
@@ -53,7 +54,7 @@ export default function ModifyTravel(props) {
     return (
         <>
             <Nav/>
-            <Container>
+            <Container className="accesibilidad-texto">
                 <Row className="m-5 ">
                 <h1 className="m-3">Modificación viaje</h1>
                     <Col sm={12} className="mt-3 pt-3 shadow p-3 ">

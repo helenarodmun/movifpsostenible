@@ -5,7 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 function Testimonials() {
   return (
-    <section className="testimonials text-center bg-light">
+    <section className="testimonials text-center bg-light accesibilidad-texto">
       <Container>
         <h2 className="mb-5">{texts.What}</h2>
         <Row>

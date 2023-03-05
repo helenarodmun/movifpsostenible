@@ -5,7 +5,7 @@ import texts from '../textos/es.json';
 
 function Showcase() {
   return (
-    <section className="showcase">
+    <section className="showcase accesibilidad-texto">
       <Container fluid>
         <Row>
           <Col lg={{ order: 2 }} className="text-white showcase-img" style={{backgroundImage: 'url("assets/img/bg-showcase-1.jpg")'}} />

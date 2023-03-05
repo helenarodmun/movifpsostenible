@@ -25,12 +25,12 @@ function submit(e) {
 }
   return (
     <header className="masthead">
-      <Container className="position-relative">
+      <Container className="position-relative accesibilidad-texto">
         <Row className="justify-content-center">
           <Col >
             <div className="text-center text-white">
               {/* Page heading*/}
-              <h1 className="mb-5">{texts.Where}</h1>
+              <h1 className="mb-5 accesibilidad-texto">{texts.Where}</h1>
               <Form  method="POST" onSubmit={submit} className="form-subscribe" id="contactForm">
                 <Row>
                   {/* Departure */}

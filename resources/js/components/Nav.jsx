@@ -8,7 +8,7 @@ function NavBar() {
     const { auth } = usePage().props;
 
     return (
-        <Navbar bg="dark" variant="dark" expand="lg" className="p-3">
+        <Navbar bg="dark" variant="dark" expand="lg" className="p-3 accesibilidad-texto">
             <Navbar.Brand href="/">MoviFP Sostenible</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarNavDropdown" />
             <Navbar.Collapse id="navbarNavDropdown">

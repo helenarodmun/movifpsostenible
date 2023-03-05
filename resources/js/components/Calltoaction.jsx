@@ -4,11 +4,11 @@ import texts from '../textos/es.json';
 
 function Calltoaction() {
   return (
-    <section className="call-to-action text-white text-center" id="signup">
+    <section className="call-to-action text-white text-center accesibilidad-texto" id="signup">
       <Container className="position-relative">
         <Row className="justify-content-center">
           <Col xl="6">
-            <h2 className="mb-4">{texts.Ready}</h2>
+            <h2 className="mb-4 accesibilidad-texto">{texts.Ready}</h2>
             <Form className="form-subscribe" id="contactFormFooter">
               <Row>
                 <Col md="8" className="mb-2 mb-md-0">

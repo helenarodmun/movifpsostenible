@@ -1,8 +1,9 @@
 import { Link, usePage } from "@inertiajs/react";
-import { Container,Row, Col, Button, OverlayTrigger, Tooltip, Form,} from "react-bootstrap";
+import { Container,Row, Col, Button, OverlayTrigger, Tooltip, Form } from "react-bootstrap";
 import Nav from "/resources/js/components/Nav";
 import Footer from "/resources/js/components/Footer";
 import imgProfile from "/resources/assets/img/blank-profile.jpg";
+import logo from '/resources/assets/img/movifpsostenible_v2.jpg';
 
 export default function Index() {
      // Obtenemos la propiedad "auth" de las props de la página utilizando el hook "usePage"
@@ -18,9 +19,17 @@ export default function Index() {
     return (
         <>
             <Nav />
-            <Container >
+            
+            <Container className="accesibilidad-texto"> 
+          <div className="capa shadow">         
+            <img
+              src={logo}
+              className=" capa"
+              alt="React Bootstrap logo"
+            />           
+            </div>
                 <Row className="m-5 ">
-                    <Col sm={12} className="mt-3 pt-3 shadow  p-3 " >
+                    <Col sm={12} className=" mt-3 pt-3 shadow  p-3 " >
                         <img
                             className=" m-5 shadow float-left rounded-circle mr-2 p-1"
                             src={imgProfile}
@@ -31,29 +40,29 @@ export default function Index() {
                         <h1>{auth.user.name}</h1>
                         <br />
                         <Form.Group className="mb-3 p-3">
-                            <Form.Label>Centro educativo:</Form.Label>
-                            <Form.Control
+                            <Form.Label >Centro educativo:</Form.Label>
+                            <Form.Control aria-label="nombre del centro educativo"
                                 placeholder={auth.user.center}
                                 disabled
                             />
                         </Form.Group>
                         <Form.Group className="mb-3 p-3">
-                            <Form.Label>Correo:</Form.Label>
-                            <Form.Control
+                            <Form.Label >Correo:</Form.Label>
+                            <Form.Control aria-label="direccion de correo electrónico"
                                 placeholder={auth.user.email}
                                 disabled
                             />
                         </Form.Group>
                         <Form.Group className="mb-3 p-3">
-                            <Form.Label>Description:</Form.Label>
-                            <Form.Control
+                            <Form.Label >Description:</Form.Label>
+                            <Form.Control aria-label="descripción personal"
                                 placeholder={auth.user.description}
                                 readOnly
                             />
                         </Form.Group>
                         <Form.Group className="mb-3 p-3">
-                            <Form.Label>Tags:</Form.Label>
-                            <Form.Control
+                            <Form.Label  >Tags:</Form.Label>
+                            <Form.Control aria-label="características del conductor"
                                 placeholder={auth.user.tags}
                                 disabled
                             />

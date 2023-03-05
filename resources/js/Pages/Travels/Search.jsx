@@ -1,14 +1,17 @@
 import { usePage } from "@inertiajs/react";
 import React, { useState } from "react";
-import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Nav from "/resources/js/components/Nav";
 import Footer from "/resources/js/components/Footer";
 import FilterHeader from "/resources/js/components/FilterHeader";
 import { Link } from "@inertiajs/react";
 
 export default function Search() {
-    const { travels, reservations = [] } = usePage().props;
+    //Desestructuramos las propiedades "travels" y "reservations" de las propiedades de la página
+   const { travels, reservations = [] } = usePage().props;
+   // Definimos un estado local "reservation" y una función "setReservation" para actualizarlo
     const [reservation, setReservation] = useState([]);
+    // Definimos una función "myDate" que formatea una fecha y hora utilizando la librería dayjs
     function myDate(fechaHora) {
         return dayjs(fechaHora).format("DD MMMM YYYY - HH:mm:ss");
     }
@@ -17,7 +20,7 @@ export default function Search() {
         <>
             <Nav />
             <FilterHeader></FilterHeader>
-            <Container>
+            <Container className="accesibilidad-texto">
                 <Row>
                     <h1 className="m-5">VIAJES ENCONTRADOS</h1>
                     {travels.map((travel) => (
@@ -42,7 +45,7 @@ export default function Search() {
                                         Fecha: {travel.date}
                                     </span>
                                     <br />
-                                    <span>
+                                    <span> 
                                         <i
                                             className="bi bi-clock"
                                             title="Hora del viaje"
@@ -66,15 +69,15 @@ export default function Search() {
                                         Precio: {travel.price}
                                     </span>
                                     <br />
-                                    {reservation.includes(travel.id) ? (
+                                    {reservation.includes(travel.id) ? (// Verifica si el ID del viaje actual está incluido en la lista de reservas
                                         <Link
                                         method="delete"
-                                        href={`/booking/${travel.id}`}
+                                        href={`/booking/${travel.id}`}// Define la URL para cancelar la reserva
                                         className="btn btn-danger mb-3 mt-3"
                                     >
                                         Anular reserva
                                     </Link>
-                                    ) : (
+                                    ) : (// Si el viaje no está reservado
                                         <Link
                                             method="post"
                                             href={"/booking/" + travel.id}
@@ -86,7 +89,7 @@ export default function Search() {
                                                 onClick={() => {
                                                     setReservation([
                                                         ...reservation,
-                                                        travel.id,
+                                                        travel.id,// Agrega el ID del viaje actual a la lista de reservas
                                                     ]);
                                                 }}
                                             >

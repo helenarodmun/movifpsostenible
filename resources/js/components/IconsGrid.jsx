@@ -4,7 +4,7 @@ import texts from '../textos/es.json';
 
 function IconsGrid() {
   return (
-    <section className="features-icons bg-light text-center">
+    <section className="features-icons bg-light text-center accesibilidad-texto">
       <Container>
         <Row>
           <Col lg={4}>

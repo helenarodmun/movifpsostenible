@@ -1,5 +1,5 @@
-import { useForm, usePage, Link} from "@inertiajs/react";
-import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import {  usePage} from "@inertiajs/react";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import Nav from "../../components/Nav";
 
 export default function UserTravels() {
@@ -13,7 +13,7 @@ export default function UserTravels() {
     return (
         <>
             <Nav></Nav>
-            <Container>
+            <Container className="accesibilidad-texto">
                 <Row>
                     <h1 className="m-5">MIS VIAJES</h1>
                     {travels.map((travel) => (

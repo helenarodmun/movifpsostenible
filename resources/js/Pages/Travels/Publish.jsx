@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
+
 export default function Index({children}) {
     const { flash } = usePage().props
       // Estado local para controlar el envío del formulario
@@ -16,10 +17,10 @@ export default function Index({children}) {
         seats: '',
         price: ''
     });
+    // Función que se ejecuta cuando se envía el formulario
     function handleSubmit(e) {
         e.preventDefault();
-        setIsSubmitting(true);
-      
+        setIsSubmitting(true);      
         post(
             "/publish",
             {
@@ -35,22 +36,22 @@ export default function Index({children}) {
     return (
         <>
             <Nav></Nav>
-            <Container className="align-items-center justify-content-center">
+            <Container className="align-items-center justify-content-center accesibilidad-texto">
             {flash.message && (
           <div class="alert">{flash.message}</div>
         )}
         {children}
-                <Row>
+                <Row className='shadow'>
                     <Col sm={12} className="mt-3 pt-3 shadow p-3 " >
-                        <Card>
+                        <Card className="shadow">
                             <Card.Header >
                             <p className="h2"> Publica un viaje</p>
                             </Card.Header>
                             <Card.Body >
                                 <Form  >
                                     <Form.Group>
-                                        <Form.Label>Origen:</Form.Label>
-                                        <Form.Control 
+                                        <Form.Label >Origen:</Form.Label>
+                                        <Form.Control aria-label="Origen del viaje"
                                             type="text"
                                             name="origin"
                                             placeholder="¿Cuál va a ser el punto de partida?"
@@ -72,7 +73,7 @@ export default function Index({children}) {
                                     </Form.Group>
                                     <Form.Group className='m-2'>
                                         <Form.Label>Destino:</Form.Label>
-                                        <Form.Control 
+                                        <Form.Control aria-label="destino de viaje"
                                             type="text"
                                             name="destination"
                                             placeholder="¿Cuál va a ser el destino del viaje?"
@@ -94,7 +95,7 @@ export default function Index({children}) {
                                     </Form.Group>
                                     <Form.Group>
                                         <Form.Label>Fecha:</Form.Label>
-                                        <Form.Control
+                                        <Form.Control aria-label="fecha del viaje"
                                             type="date"
                                             name="date"
                                             placeholder="Que día va a realizar el viaje?"
@@ -113,7 +114,7 @@ export default function Index({children}) {
                                     </Form.Group>
                                     <Form.Group>
                                         <Form.Label>Hora:</Form.Label>
-                                        <Form.Control
+                                        <Form.Control aria-label="Hora del viaje"
                                             type="text"
                                             name="hour"
                                             placeholder="¿A qué hora se iniciará el viaje?"
@@ -137,7 +138,7 @@ export default function Index({children}) {
                                         <Form.Label>
                                             Asientos disponibles:
                                         </Form.Label>
-                                        <Form.Select
+                                        <Form.Select aria-label="Asientos disponibles"
                                             as="select"
                                             name="seats"
                                             value={data.seats}
@@ -165,7 +166,7 @@ export default function Index({children}) {
                                     </Form.Group>
                                     <Form.Group >
                                         <Form.Label>Precio:</Form.Label>
-                                        <Form.Control
+                                        <Form.Control aria-label="Precio del viaje"
                                             type="number"
                                             name="price"
                                             placeholder="¿Que precio tiene el viaje?"
@@ -200,10 +201,8 @@ export default function Index({children}) {
                                                ? "Publicando..."
                                                : "Publicar viaje"}
                                          
-                                       </Button>
-                                    </Card.Footer>
-                               
-                           
+                                    </Button>
+                            </Card.Footer>                    
                         </Card>
                     </Col>
                 </Row>
