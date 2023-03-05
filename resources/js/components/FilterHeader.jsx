@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import texts from '../textos/es.json';
-import { useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 
 function FilterHeader() {
    // Utilizar el hook useForm para crear variables que manejen el estado del formulario
@@ -30,15 +30,15 @@ function submit(e) {
 }
   return (
     <header className="masthead">
-      <Container className="position-relative">
-        <Row className="justify-content-center">
-          <Col >
-            <div className="text-center text-white">
+      <Container className="position-relative ">
+        <Row className="justify-content-center ">
+          <Col  >
+            <div sm={6} className="text-center text-white ">
               {/* Page heading*/}
               <h1 className="mb-5">!Ahora puedes buscar tu viaje de forma mas personalizada!</h1>
               <h2 className="mb-5"> Busqueda avanzada</h2>
-              <Form  method="POST" onSubmit={submit} className="form-subscribe" id="contactForm">
-                <Row>
+              <Form   method="POST" onSubmit={submit} className="form-subscribe" id="contactForm" >
+                <Row className='m-5'>
                   {/* Departure */}
                   <Col style={{flex: '1.5 0 0%'}}>
                     <Form.Control 
@@ -136,6 +136,14 @@ function submit(e) {
                     </Button>
                   </Col>
                 </Row>
+                <Col xs="auto">
+                  <Link 
+                  href="/travels">
+                      <Button classNem='m-5'variant="warning" size="lg" id="submitButton" type="submit">
+                      Ver todos los viajes
+                    </Button>
+                  </Link>
+                  </Col>
               </Form>
             </div>
           </Col>

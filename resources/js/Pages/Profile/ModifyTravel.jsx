@@ -1,7 +1,8 @@
 import { useForm, usePage } from "@inertiajs/react";
 import { useState } from "react";
-import {  Button, Form, Nav, Container, Row, Col, Card } from "react-bootstrap";
-
+import {  Button, Form, Container, Row, Col, Card } from "react-bootstrap";
+import Nav from "/resources/js/components/Nav";
+import Footer from "/resources/js/components/Footer";
 export default function ModifyTravel(props) {
     // Obtener la información del viaje desde las props de la página utilizando usePage()
      const { travel } = usePage().props;
@@ -33,7 +34,7 @@ export default function ModifyTravel(props) {
         setIsSubmitting(false);
     }
     // Función para manejar la eliminación del viaje
-    function handleSubmit(e) {
+    function handleSubmitDelete(e) {
         e.preventDefault();
         setIsSubmitting(true);
         // Llamar a la función delete() para enviar una solicitud DELETE al servidor y eliminar el viaje
@@ -54,11 +55,12 @@ export default function ModifyTravel(props) {
             <Nav/>
             <Container>
                 <Row className="m-5 ">
+                <h1 className="m-3">Modificación viaje</h1>
                     <Col sm={12} className="mt-3 pt-3 shadow p-3 ">
-                        <Card>
+                        <Card className="shadow">
                             <Card.Header closeButton>
-                                <Card.Title>
-                                    Modificar viaje {travel.id}
+                                <Card.Title >
+                                    <p className="h2"> Viaje {travel.id}</p>
                                 </Card.Title>
                             </Card.Header>
                             <Card.Body>
@@ -172,7 +174,10 @@ export default function ModifyTravel(props) {
                                 </Form>
                             </Card.Body>
                             <Card.Footer>
-                                <Button className='m-3' variant="primary"
+                                <Button 
+                                className='m-3 shadow' 
+                                variant="primary"
+                                size='lg'
                                  disabled={isSubmitting}
                                  onClick={handleSubmit} 
                                  aria-label="Modificar los datos del viaje"
@@ -182,23 +187,26 @@ export default function ModifyTravel(props) {
                                         : "Guardar cambios"}
                                   
                                 </Button>
-                                <Button className="m-3"
+                                <Button className="m-3 shadow"
                                 type="submit"
                                 variant="danger"
+                                size='lg'
+                                disabled={isSubmitting}
                                 aria-label="Eliminar los datos del viaje"
-                                onClick={handleSubmit} 
+                                onClick={handleSubmitDelete} 
                                 >
                                   {isSubmitting
                                        ? "Eliminando..."
-                                       : "Registro eliminado"}
+                                       : "Eliminar registro"}
                             
-                                Eliminar
+                               
                             </Button>
                             </Card.Footer>
                         </Card>
                     </Col>
                 </Row>
             </Container>
+            <Footer></Footer>
         </>
     );
 }

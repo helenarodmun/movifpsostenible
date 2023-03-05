@@ -90,10 +90,10 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
+    //dirección global por defecto, por si no se especifica ninguna dirección
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MoviFP Sostenible', 'info@movifp.com'),
+        'name' => env('MoviFP Sostenible', 'Plataforma para compartir vehículo'),
     ],
 
     /*

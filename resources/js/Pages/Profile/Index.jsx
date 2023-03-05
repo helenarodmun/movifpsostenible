@@ -22,7 +22,7 @@ export default function Index() {
                 <Row className="m-5 ">
                     <Col sm={12} className="mt-3 pt-3 shadow  p-3 " >
                         <img
-                            className="float-left rounded-circle mr-2 p-1"
+                            className=" m-5 shadow float-left rounded-circle mr-2 p-1"
                             src={imgProfile}
                             width="120"
                             height="120"
@@ -66,11 +66,11 @@ export default function Index() {
                                 delay={{ show: 250, hide: 400 }}// establece un retraso antes de que se muestre la herramienta de información sobre herramientas
                                 overlay={renderTooltip}// especifica qué función se usa para renderizar la herramienta de información sobre herramientas
                             >
-                                <Button className="btn btn-secondary  m-3">
+                                <Button className="btn btn-secondary  m-3 shadow" size='lg'>
                                 <Link
                                     href="/editProfile"
                                     as="button"
-                                    className="bi bi-pencil-square"
+                                    className=" shadow bi bi-pencil-square"
                                 />
                                 </Button>
                             </OverlayTrigger>

@@ -17,8 +17,8 @@ export default function UserTravels() {
                 <Row>
                     <h1 className="m-5">MIS VIAJES</h1>
                     {travels.map((travel) => (
-                        <Col key={travel.id} md={6} className="-ml-3">
-                            <Card>
+                        <Col key={travel.id} md={6} className="mt-3 pt-3 shadow  p-3 ">
+                            <Card className="shadow">
                                 <Card.Header className="h3">
                                     Origen: {travel.origin}
                                     <br />
@@ -38,8 +38,8 @@ export default function UserTravels() {
                                     </span>
                                     <br/>
                                         <Button
-                                        
-                                            className="btn btn-success  m-3"
+                                            size='lg'
+                                            className="btn btn-success  m-3 shadow"
                                               href={"/modifytravel/"+travel.id}
                                         >
                                              Modifica el viaje

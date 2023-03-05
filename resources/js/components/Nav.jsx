@@ -81,12 +81,14 @@ function NavBar() {
                             >
                                 Pagos
                             </NavDropdown.Item>
-                            <NavDropdown.Item
+                            <NavDropdown.Item>
+                                <Link
                                 href="/profile"
-                                as='button'
+                                as='button'                          
                                 className="bi bi-person-circle"
                             >
                                 Perfil
+                                </Link>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item>

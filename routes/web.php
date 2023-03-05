@@ -7,6 +7,7 @@ use App\Models\Travel;
 use App\Models\User;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -54,3 +55,12 @@ Route::put('/modifytravel/{id}', [TravelController::class, 'update'])->middlewar
 Route::delete('/deletetravel/{id}', [TravelController::class, 'destroy'])->middleware('auth');
 
 Route::post('/booking/{id}', [TravelUserController::class, 'store'])->middleware('auth');
+
+// Route::get('enviar', ['as' => 'enviar', function () {
+//     $data = ['link' => 'http://styde.net'];
+//     Mail::send('email.book.travels', $data, function ($message) {
+//         $message->from('email@styde.net', 'Styde.Net');
+//         $message->to('user@example.com')->subject('Notificación');
+//     });
+//     return "Se envío el email";
+// }]);

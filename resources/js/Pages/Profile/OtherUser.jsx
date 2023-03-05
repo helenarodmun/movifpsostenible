@@ -16,7 +16,7 @@ export default function Index() {
                 <Row className="m-5 ">
                     <Col sm={12} className="mt-3 pt-3 shadow  p-3 ">
                         <img
-                            className="float-left rounded-circle mr-2 p-1"
+                            className="shadow m-5 float-left rounded-circle mr-2 p-1"
                             src={imgProfile}
                             width="120"
                             height="120"
@@ -57,8 +57,8 @@ export default function Index() {
                 <Row>
                 <h1 className="m-5">VIAJES DE {user.name.toUpperCase()}</h1>
                     {travels.map((travel) => (
-                        <Col key={travel.id} md={6} className="-ml-3">
-                            <Card>
+                        <Col key={travel.id} md={6} className="mt-3 pt-3 shadow  p-3 ">
+                            <Card className="shadow m-3">
                                 <Card.Header className="h3">
                                     Origen: {travel.origin}
                                     <br />

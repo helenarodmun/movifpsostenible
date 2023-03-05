@@ -1,6 +1,7 @@
 import { useForm, usePage, Link} from "@inertiajs/react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 
 export default function Index() {
     const { travels, flash, booking } = usePage().props;
@@ -19,8 +20,8 @@ export default function Index() {
                     <h1 className="m-5">Viajes</h1>
                     {console.log(booking)}
                     {travels.map((travel) => (
-                        <Col key={travel.id} md={6} className="-ml-3">
-                            <Card>
+                        <Col key={travel.id} md={6} className="mt-3 pt-3 shadow  p-3 ">
+                            <Card className="shadow">
                                 <Card.Header className="h3">
                                     Origen: {travel.origin}
                                     <br />
@@ -43,8 +44,9 @@ export default function Index() {
                                         method="post"
                                         href={"/booking/"+travel.id}>
                                           <Button
+                                          bsStyle="primary"size='lg'
                                             variant="success"
-                                            className="mb-3 mt-3" >Reserva tu viaje! 
+                                            className="mb-3 mt-3 shadow" >Reserva tu viaje! 
                                             </Button> 
                                         </Link>
                                 </Card.Body>
@@ -65,6 +67,7 @@ export default function Index() {
                     ))}
                 </Row>
             </Container>
+            <Footer></Footer>
         </>
     );
 }

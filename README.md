@@ -90,3 +90,9 @@ Instala el paquete de Inertia. Si obtienes algún error por problemas de version
 - se ha creado la tabla pivote travel_users, y se han añadido a los modelos las relaciones pertinentes
 
 ## Otras tareas realizadas
+
+`composer require symfony/mailgun-mailer symfony/http-client`
+
+- Controlador que permite enviar correo a trevés de servidores SMTP
+
+

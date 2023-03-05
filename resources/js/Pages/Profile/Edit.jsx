@@ -39,7 +39,7 @@ export default function Index() {
                     <Col sm={12} className="mt-3 pt-3 shadow p-3 ">
                         <Form onSubmit={handleSubmit}>
                             <img
-                                className="float-left rounded-circle mr-2 p-1"
+                                className="shadow m-5 float-left rounded-circle mr-2 p-1"
                                 src={imgProfile}
                                 width="120"
                                 height="120"
@@ -126,6 +126,8 @@ export default function Index() {
                                 )}
                             </Form.Group>
                             <Button
+                                size='lg'
+                                className="shadow"
                                 type="submit"
                                 variant="success"
                                 aria-label="Actualizar los datos del perfil"

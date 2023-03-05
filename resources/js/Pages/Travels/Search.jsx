@@ -6,6 +6,7 @@ import Footer from "/resources/js/components/Footer";
 import FilterHeader from "/resources/js/components/FilterHeader";
 import { Link } from "@inertiajs/react";
 
+
 export default function Search() {
     const { travels } = usePage().props;
     function myDate(fechaHora) {
@@ -20,9 +21,9 @@ export default function Search() {
             <Row>
             <h1 className="m-5">VIAJES ENCONTRADOS</h1>
             {travels.map((travel) => (
-                <Col key={travel.id} md={6} className="-ml-3">
+                <Col key={travel.id} md={6} className="mt-3 pt-3 shadow  p-3 ">
                     {" "}
-                    <Card className="m-5 ">
+                    <Card className="m-3 shadow ">
                         <Card.Header className="h3">
                                     Origen: {travel.origin}
                                     <br />
@@ -49,8 +50,9 @@ export default function Search() {
                                         method="post"
                                         href={"/booking/"+travel.id}>
                                           <Button
+                                          size='lg'
                                             variant="success"
-                                            className="mb-3 mt-3" >Reserva tu viaje! 
+                                            className="mb-3 mt-3 shadow" >Reserva tu viaje! 
                                             </Button> 
                                         </Link>
                                 </Card.Body>

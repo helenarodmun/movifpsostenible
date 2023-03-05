@@ -1,9 +1,12 @@
 import { useForm, usePage } from "@inertiajs/react";
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 export default function Index({children}) {
     const { flash } = usePage().props
+      // Estado local para controlar el envío del formulario
+      const [isSubmitting, setIsSubmitting] = useState(false);
     // useForm es un helper diseñado para formularios
     const { data, setData, post, processing, errors } = useForm({
         origin: "",
@@ -13,8 +16,9 @@ export default function Index({children}) {
         seats: '',
         price: ''
     });
-    function submit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
+        setIsSubmitting(true);
         // post puede recibir un parametro de parametros donde puedes complementar la funcion con mas funciones, en este caso, si se hace bien el post se sube la data a la consola
         post(
             "/publish",
@@ -25,24 +29,25 @@ export default function Index({children}) {
             },
             data
         );
+        setIsSubmitting(false);
     }
  
     return (
         <>
             <Nav></Nav>
-            <Container>
+            <Container className="align-items-center justify-content-center">
             {flash.message && (
           <div class="alert">{flash.message}</div>
         )}
         {children}
                 <Row>
-                    <Col md={6} >
+                    <Col sm={12} className="mt-3 pt-3 shadow p-3 " >
                         <Card>
-                            <Card.Header>
-                                <h3>Publica un viaje</h3>
+                            <Card.Header >
+                            <p className="h2"> Publica un viaje</p>
                             </Card.Header>
                             <Card.Body >
-                                <Form  onSubmit={submit}  >
+                                <Form  >
                                     <Form.Group>
                                         <Form.Label>Origen:</Form.Label>
                                         <Form.Control 
@@ -158,7 +163,7 @@ export default function Index({children}) {
                                             </div>
                                         )}
                                     </Form.Group>
-                                    <Form.Group>
+                                    <Form.Group >
                                         <Form.Label>Precio:</Form.Label>
                                         <Form.Control
                                             type="number"
@@ -180,15 +185,30 @@ export default function Index({children}) {
                                             </div>
                                         )}
                                     </Form.Group>
-                                    <Button variant="primary" type="submit">
-                                        Publicar viaje
-                                    </Button>
-                                </Form>
-                            </Card.Body>
+                                    </Form>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                    <Button 
+                                        size="lg" 
+                                        clasName='m-3 shadow'
+                                        variant="primary" 
+                                        disabled={isSubmitting}
+                                        onClick={handleSubmit} 
+                                        aria-label="Publicar un nuevo viaje"
+                                        >
+                                          {isSubmitting
+                                               ? "Publicando..."
+                                               : "Publicar viaje"}
+                                         
+                                       </Button>
+                                    </Card.Footer>
+                               
+                           
                         </Card>
                     </Col>
                 </Row>
             </Container>
+            <Footer></Footer>
         </>
     );
 }
