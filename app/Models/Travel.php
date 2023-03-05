@@ -16,6 +16,7 @@ class Travel extends Model
         'date',
         'hour',
         'seats',
+        'price',
         'user_id'
     ];
     // El nombre de la tabla correspondiente al modelo

@@ -54,14 +54,7 @@ Route::get('/modifytravel/{id}',  [TravelController::class, 'show'])->middleware
 Route::put('/modifytravel/{id}', [TravelController::class, 'update'])->middleware('auth');
 Route::delete('/deletetravel/{id}', [TravelController::class, 'destroy'])->middleware('auth');
 
+Route::get('/booking/{id}', [TravelUserController::class, 'store'])->middleware('auth');
 Route::post('/booking/{id}', [TravelUserController::class, 'store'])->middleware('auth');
 Route::delete('/booking/{id}', [TravelUserController::class, 'destroy'])->middleware('auth');
 
-// Route::get('enviar', ['as' => 'enviar', function () {
-//     $data = ['link' => 'http://styde.net'];
-//     Mail::send('email.book.travels', $data, function ($message) {
-//         $message->from('email@styde.net', 'Styde.Net');
-//         $message->to('user@example.com')->subject('Notificación');
-//     });
-//     return "Se envío el email";
-// }]);

@@ -44,13 +44,8 @@ class TravelUserController extends Controller
 
     public function destroy($id)
     {
-        $travelUser = TravelUser::find($id);
-
-        // Si la reserva no existe, retornamos un error 404
-        if (!$travelUser) {
-            abort(404);
-        }
-
+        
+        $travelUser = TravelUser::where('travel_id', $id)->first();
         $travel = Travel::find($travelUser->travel_id);
 
         // Aumentamos en uno el número de asientos disponibles
