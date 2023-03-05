@@ -34,10 +34,5 @@ class Travel extends Model
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
-    // Establece la relación muchos a muchos de la tabla travels con la tabla users y guarda los timestamps
-    
-    // public function bookings()
-    // {
-    //     return $this->belongsToMany(User::class)->withTimestamps();
-    // }
+ 
 }
