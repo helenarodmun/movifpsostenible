@@ -37,7 +37,7 @@ export default function Search() {
             <Container className="accesibilidad-texto">
                 <Row>
                     {flash.message && (
-                        <div class="alert alert-success alert-dissmisible">
+                        <div class="alert alert-success" role={"alert"}>
                             <button
                                 type="button"
                                 class="close"
@@ -50,7 +50,7 @@ export default function Search() {
                         </div>
                     )}
                     {flash.error && (
-                        <div class="alert alert-danger alert-dissmisible">
+                        <div class="alert alert-success" role={"alert"}>
                             <button
                                 type="button"
                                 class="close"
@@ -117,7 +117,6 @@ export default function Search() {
                                             onClick={() =>
                                                 cancelReservation(travel.id)
                                             } // Llama la función cancelReservation en lugar de setReservation
-                                         
                                         >
                                             Anular reserva
                                         </Link>

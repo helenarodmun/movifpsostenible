@@ -42,6 +42,7 @@ return Inertia::render('Profile/Edit');
 });
 
 Route::put('/updateProfile',[UserController::class,'update'])->middleware('auth');
+Route::delete('/deleteUser/{id}',[UserController::class,'destroy'])->middleware('auth');
 
 Route::get('/usertravels',[UserController::class,'showCurrentUserTravels']);
 Route::get('/otheruser/{user}', [UserController::class, 'showOtherUserTravels']);
@@ -53,4 +54,3 @@ Route::delete('/deletetravel/{id}', [TravelController::class, 'destroy'])->middl
 Route::get('/booking/{id}', [TravelUserController::class, 'store'])->middleware('auth');
 Route::post('/booking/{id}', [TravelUserController::class, 'store'])->middleware('auth');
 Route::delete('/booking/{id}', [TravelUserController::class, 'destroy'])->middleware('auth');
-

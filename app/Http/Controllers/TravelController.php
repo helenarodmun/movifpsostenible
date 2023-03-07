@@ -8,13 +8,12 @@ use App\Models\TravelUser;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class TravelController extends Controller
 {
-
     public function index()
     {
-
         // Obtener la lista de viajes con la información del conductor utilizando Eloquent ORM
         $travels = Travel::with('driver')
             ->latest()
@@ -40,6 +39,7 @@ class TravelController extends Controller
         $travels = Travel::with('driver')
             ->latest()
             ->get();
+        Session::flash('viaje', 'Tu viaje a sido correctamente');
         return Inertia::render('Travels/Index', ['travels' => $travels]);
     }
 
@@ -52,13 +52,13 @@ class TravelController extends Controller
 
         // Buscar los viajes que coincidan con los criterios de búsqueda
         // Se obtiene una instancia del modelo Travel y se crea una instancia del Query Builder.
-         //query() es una función que devuelve una instancia del Query Builder asociada con el modelo actual, lo que permite construir consultas
+        //query() es una función que devuelve una instancia del Query Builder asociada con el modelo actual, lo que permite construir consultas
         // programáticamente en lugar de escribir SQL directamente
         //cuando se llama a Travel::query(), se está creando una instancia del Query Builder que está asociada con el modelo Travel, lo que permite
         // construir consultas que interactúan con la tabla travels en la base de datos.
         $query = Travel::query();
         // Si se recibió un valor para el campo en concreto, se agrega una condición en la consulta para que solo se devuelvan los viajes con ese valor.
-       
+
         if (isset($data['origin'])) {
             $query->where('origin', $data['origin']);
         }
@@ -83,11 +83,12 @@ class TravelController extends Controller
             $query->where('price', $data['price']);
         }
 
-        $travels = $query->with('driver')
+        $travels = $query
+            ->with('driver')
             ->with('driver') // Incluir la información del conductor del viaje en la consulta
             ->latest() // Ordenar los resultados por fecha de forma descendente (los viajes más recientes primero)
             ->get() // Obtener los resultados
-            ->all(); // Convertir la colección de resultados en un array 
+            ->all(); // Convertir la colección de resultados en un array
         // Devolver la vista con los resultados de la búsqueda
         return Inertia::render('Travels/Search', [
             'travels' => $travels,
@@ -102,7 +103,6 @@ class TravelController extends Controller
         // Renderizar la plantilla 'Profile/ModifyTravel' y pasar la información del viaje como prop
         return Inertia::render('Profile/ModifyTravel', ['travel' => $travel]);
     }
-
 
     public function update(TravelForm $request, $id)
     {
@@ -122,9 +122,10 @@ class TravelController extends Controller
         // Recupera todos los viajes del usuario después de guardar el viaje actualizado.
         $travels = Auth::user()->travels;
         // Redirige al perfil del usuario actualizado.
+        Session::flash('edit', 'Se ha editado correctamente');
+
         return Inertia::render('Profile/MyTravels', ['travels' => $travels]);
     }
-
 
     public function destroy($id)
     {
@@ -135,6 +136,7 @@ class TravelController extends Controller
         // Recupera todos los viajes del usuario después de guardar el viaje actualizado.
         $travels = Auth::user()->travels;
         // Redirige al perfil del usuario actualizado con una lista actualizada de sus viajes.
+        Session::flash('edit','El viaje ha sido borrado correctamente');
         return Inertia::render('Profile/MyTravels', ['travels' => $travels]);
     }
 }
