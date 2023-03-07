@@ -20,6 +20,9 @@ return new class extends Migration
             $table->foreignId('travel_id');
             $table->foreignId('user_id');
             $table->timestamps();
+
+            $table->foreing('travel_id')->reference('id')->on('travel')->onDelete('cascade');
+            $table->foreing('user_id')->reference('id')->on('user')->onDelete('cascade');
         });
     }
 

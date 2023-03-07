@@ -7,8 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -17,17 +16,25 @@ return new class extends Migration
     public function up()
     {
         Schema::create('travels', function (Blueprint $table) {
-            $table->id();            
+            $table->id();
             $table->foreignId('user_id');
             $table->string('origin', 45);
             $table->string('destination', 45);
             $table->date('date');
             $table->time('hour');
-            $table->decimal('price');            
+            $table->decimal('price');
             $table->unsignedTinyInteger('seats')->unsigned();
             $table->timestamps();
+
+            $table
+                ->foreing('user_id')
+                ->reference('id')
+                ->on('user')
+                ->onDelete('cascade');
         });
-        DB::statement('ALTER TABLE travels ADD CONSTRAINT check_seats_range CHECK (seats >= 0 AND seats <= 6)');
+        DB::statement(
+            'ALTER TABLE travels ADD CONSTRAINT check_seats_range CHECK (seats >= 0 AND seats <= 6)'
+        );
     }
     protected $table = 'travels';
     /**
