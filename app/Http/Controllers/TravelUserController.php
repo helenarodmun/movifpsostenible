@@ -21,7 +21,7 @@ class TravelUserController extends Controller
         $id = Auth::user()->id;
         $travel = Travel::find($request->id);
 
-        if ($travel->driver->id != $id || $travel->seats > 0) {
+        if ($travel->driver->id != $id && $travel->seats > 0) {
             // Guardar reserva
             $order = new TravelUser();
             $order->user_id = $id;

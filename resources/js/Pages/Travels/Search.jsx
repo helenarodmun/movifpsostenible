@@ -8,13 +8,13 @@ import { Link } from "@inertiajs/react";
 
 export default function Search() {
     //Desestructuramos las propiedades "travels" y "reservations" de las propiedades de la página
-   const { travels, reservations = [], flash } = usePage().props;
-   // Definimos un estado local "reservation" y una función "setReservation" para actualizarlo
+    const { travels, reservations = [], flash } = usePage().props;
+    // Definimos un estado local "reservation" y una función "setReservation" para actualizarlo
     const [reservation, setReservation] = useState([]);
     // Definimos una función para manejar la anulación de la reserva
-function cancelReservation(travelId) {
-    setReservation(reservation.filter((id) => id !== travelId));
-}
+    function cancelReservation(travelId) {
+        setReservation(reservation.filter((id) => id !== travelId));
+    }
     // Definimos una función "myDate" que formatea una fecha y hora utilizando la librería dayjs
     function myDate(fechaHora) {
         return dayjs(fechaHora).format("DD MMMM YYYY - HH:mm:ss");
@@ -27,10 +27,28 @@ function cancelReservation(travelId) {
             <Container className="accesibilidad-texto">
                 <Row>
                     {flash.message && (
-                        <div class="alert alert-success">{flash.message}</div>
+                        <div class="alert alert-success alert-dissmisible">
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="alert"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {flash.message}
+                        </div>
                     )}
                     {flash.error && (
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger alert-dissmisible">
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="alert"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                             {flash.error}
                         </div>
                     )}
@@ -81,7 +99,8 @@ function cancelReservation(travelId) {
                                         Precio: {travel.price}
                                     </span>
                                     <br />
-                                    {reservation.includes(travel.id) ? ( // Verifica si el ID del viaje actual está incluido en la lista de reservas
+                                    {reservation.includes(travel.id) ? (// Verifica si el ID del viaje actual está incluido en la lista de reservas
+                                     
                                         <Link
                                             method="delete"
                                             href={`/booking/${travel.id}`}

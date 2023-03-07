@@ -19,10 +19,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->midd
 Route::get('/search', [TravelController::class, 'search']);
 Route::post('/search', [TravelController::class, 'search']);
 
-Route::get('travels', [TravelController::class, 'index']);
-// Route::get('travels/{id}',[TravelUserController::class,'store']);
-
-// Route::post('travels', [TravelController::class, 'store']);
+Route::get('/travels', function () {
+    return Inertia::render('Home');
+});
 
 Route::get('/publish',function(){
 return Inertia::render('Travels/Publish');
@@ -42,7 +41,6 @@ Route::get('/editProfile', function () {
 return Inertia::render('Profile/Edit');
 });
 
-// Route::get('/updateProfile',[UserController::class,'update'])->middleware('auth');
 Route::put('/updateProfile',[UserController::class,'update'])->middleware('auth');
 
 Route::get('/usertravels',[UserController::class,'showCurrentUserTravels']);

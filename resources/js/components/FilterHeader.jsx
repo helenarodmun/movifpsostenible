@@ -138,14 +138,6 @@ function submit(e) {
                     </Button>
                   </Col>
                 </Row>
-                <Col xs="auto">
-                  <Link 
-                  href="/travels">
-                      <Button classNem='m-5'variant="warning" size="lg" id="submitButton" type="submit">
-                      Ver todos los viajes
-                    </Button>
-                  </Link>
-                  </Col>
               </Form>
             </div>
           </Col>
