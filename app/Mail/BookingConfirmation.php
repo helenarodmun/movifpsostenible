@@ -37,13 +37,13 @@ class BookingConfirmation extends Mailable
     public function content()
     {
         return new Content(
-            view: 'email.book.travels',
+            view: 'emailbook', 
             with: [
-                'orderOrigin' => $this->order->origin,
-                'orderDestination' => $this->order->destination,
-                'orderDay' => $this->order->date,
-                'orderNumber' => $this->order->travel_id,
-                'orderDate' => $this->order->created_at,
+                'orderTimeStamp' => $this->order->created_at,
+                'UserName' => $this->order->user->name,
+                'Identifier' => $this->order->id,
+                'orderNumber' => $this->order->user->travel_id,
+                'orderDate' => $this->order->user->created_at,
             ],
         );
     }

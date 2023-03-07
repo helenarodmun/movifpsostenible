@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\BookingConfirmation;
 use App\Models\Travel;
 use App\Models\TravelUser;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,8 @@ class TravelUserController extends Controller
         $travel = Travel::find($request->id);
         $travel->seats = $travel->seats - 1;
         $travel->save();
-        // Mail::to($request->user())->send(new BookingConfirmation($order));
+        Mail::to($order->user->email)->send(new BookingConfirmation($order));
+        // Mail::to($travel->driver->email)->send(new BookingConfirmation($order));
         // Obtener la lista actualizada de viajes y pasarla a la vista
         $travels = Travel::with('driver')->orderBy('updated_at', 'DESC')->get();
         //Auth::user() devuelve el modelo de usuario autenticado actualmente.

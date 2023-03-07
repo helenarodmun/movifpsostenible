@@ -42,7 +42,7 @@ export default function Index({children}) {
         )}
         {children}
                 <Row className='shadow'>
-                    <Col sm={12} className="mt-3 pt-3 shadow p-3 " >
+                    <Col sm={8} className="mt-3 pt-3 shadow p-3 " >
                         <Card className="shadow">
                             <Card.Header >
                             <p className="h2"> Publica un viaje</p>
@@ -115,7 +115,7 @@ export default function Index({children}) {
                                     <Form.Group>
                                         <Form.Label>Hora:</Form.Label>
                                         <Form.Control aria-label="Hora del viaje"
-                                            type="text"
+                                            type="time"
                                             name="hour"
                                             placeholder="¿A qué hora se iniciará el viaje?"
                                             value={data.hour}
@@ -151,6 +151,7 @@ export default function Index({children}) {
                                             <option disabled>
                                                 Escoja el número de asientos ...
                                             </option>
+                                            <option value=""></option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>

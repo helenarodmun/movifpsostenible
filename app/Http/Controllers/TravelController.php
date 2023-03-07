@@ -48,21 +48,51 @@ class TravelController extends Controller
     public function search(Request $request)
     {
         // Obtener los datos enviados por el usuario mediante la solicitud POST
-        $data = $request;
+        $data = $request->all();
+
         // Buscar los viajes que coincidan con los criterios de búsqueda
-        $travels = Travel::where('origin', $data['origin']) // Buscar viajes con el origen especificado
-            ->orWhere('destination', $data['destination'])
-            ->orWhere('date', $data['date'])
-            // ->orWhere('hour','=', $data['hour'])
-            // ->orWhere('seats','=', $data['seats'])
-            // ->orWhere('price','=', $data['price'])
+        // Se obtiene una instancia del modelo Travel y se crea una instancia del Query Builder.
+         //query() es una función que devuelve una instancia del Query Builder asociada con el modelo actual, lo que permite construir consultas
+        // programáticamente en lugar de escribir SQL directamente
+        //cuando se llama a Travel::query(), se está creando una instancia del Query Builder que está asociada con el modelo Travel, lo que permite
+        // construir consultas que interactúan con la tabla travels en la base de datos.
+        $query = Travel::query();
+        // Si se recibió un valor para el campo en concreto, se agrega una condición en la consulta para que solo se devuelvan los viajes con ese valor.
+       
+        if (isset($data['origin'])) {
+            $query->where('origin', $data['origin']);
+        }
+
+        if (isset($data['destination'])) {
+            $query->where('destination', $data['destination']);
+        }
+
+        if (isset($data['date'])) {
+            $query->where('date', $data['date']);
+        }
+
+        if (isset($data['hour'])) {
+            $query->where('hour', $data['hour']);
+        }
+
+        if (isset($data['seats'])) {
+            $query->where('seats', $data['seats']);
+        }
+
+        if (isset($data['price'])) {
+            $query->where('price', $data['price']);
+        }
+
+        $travels = $query->with('driver')
             ->with('driver') // Incluir la información del conductor del viaje en la consulta
             ->latest() // Ordenar los resultados por fecha de forma descendente (los viajes más recientes primero)
             ->get() // Obtener los resultados
             ->all(); // Convertir la colección de resultados en un array
+
         // Devolver la vista con los resultados de la búsqueda
         return Inertia::render('Travels/Search', ['travels' => $travels]);
     }
+
     //recibe un parámetro $id que es el identificador del viaje que se desea mostrar
     public function show($id)
     {

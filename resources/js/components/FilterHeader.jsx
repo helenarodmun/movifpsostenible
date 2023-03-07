@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import texts from '../textos/es.json';
 import { Link, useForm } from "@inertiajs/react";
 
 function FilterHeader() {
    // Utilizar el hook useForm para crear variables que manejen el estado del formulario
-   const { data, setData, get, processing, errors } = useForm({
+   const { data, setData, post, processing, errors } = useForm({
     origin: "",
     destination: "",
     date: "",
@@ -13,12 +13,13 @@ function FilterHeader() {
     seats:"",
     price:""
 });
+
 //función para manejar el evento submit del formulario
 function submit(e) {
     e.preventDefault();
     // Utilizar la función get del hook useForm para hacer una solicitud POST a la ruta /search
     // Si la solicitud es exitosa, se imprimirá la data en la consola
-    get(
+    post(
         "/search",
         {
             onSuccess: () => {
@@ -28,6 +29,7 @@ function submit(e) {
         data
     );
 }
+
   return (
     <header className="masthead">
       <Container className="position-relative accesibilidad-texto">
@@ -37,7 +39,7 @@ function submit(e) {
               {/* Page heading*/}
               <h1 className="mb-5 accesibilidad-texto">!Ahora puedes buscar tu viaje de forma mas personalizada!</h1>
               <h2 className="mb-5 accesibilidad-texto"> Busqueda avanzada</h2>
-              <Form   method="POST" onSubmit={submit} className="form-subscribe" id="contactForm" >
+              <Form   method="POST" onSubmit={submit} className="form-subscribe" id="form" >
                 <Row className='m-5'>
                   {/* Departure */}
                   <Col style={{flex: '1.5 0 0%'}}>
@@ -99,7 +101,7 @@ function submit(e) {
                              "hour",
                              e.target.value
                          )
-                     }/>
+                     }placeholder={texts.Leaving}/>
                     <Form.Control.Feedback type="invalid" className="text-white">
                       Formato de hora no válido
                     </Form.Control.Feedback>
@@ -112,7 +114,7 @@ function submit(e) {
                              "seats",
                              e.target.value
                          )
-                     }/>
+                     }placeholder='Asientos'/>
                     <Form.Control.Feedback type="invalid" className="text-white">
                       Formato de número no válido
                     </Form.Control.Feedback>
@@ -125,7 +127,7 @@ function submit(e) {
                              "price",
                              e.target.value
                          )
-                     }/>
+                     }placeholder='Precio'/>
                     <Form.Control.Feedback type="invalid" className="text-white">
                     Formato de precio no válido
                     </Form.Control.Feedback>
@@ -155,6 +157,7 @@ function submit(e) {
 
 
     export default FilterHeader;
+  
 
     if (document.getElementById('FilterHeader')) {
         const Index = ReactDOM.createRoot(document.FilterHeader("FilterHeader"));

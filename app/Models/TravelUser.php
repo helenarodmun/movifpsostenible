@@ -22,9 +22,9 @@ class TravelUser extends Model
     protected $table = 'travel_user';
 
     // Relación muchos a muchos con la tabla de usuarios
-    public function bookings()
+    public function travel()
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(Travel::class);
     }
 
     public function user()

@@ -34,5 +34,5 @@ class Travel extends Model
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
- 
+    
 }

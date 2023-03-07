@@ -92,8 +92,8 @@ return [
     */
     //dirección global por defecto, por si no se especifica ninguna dirección
     'from' => [
-        'address' => env('MoviFP Sostenible', 'info@movifp.com'),
-        'name' => env('MoviFP Sostenible', 'Plataforma para compartir vehículo'),
+        'address' => env('MAIL_FROM_ADDRESS', 'info@movifp.com'),
+        'name' => env('MAIL_FROM_NAME', 'Plataforma para compartir vehículo'),
     ],
 
     /*
