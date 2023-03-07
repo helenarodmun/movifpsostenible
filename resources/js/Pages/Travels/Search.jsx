@@ -8,7 +8,7 @@ import { Link } from "@inertiajs/react";
 
 export default function Search() {
     //Desestructuramos las propiedades "travels" y "reservations" de las propiedades de la página
-   const { travels, reservations = [] } = usePage().props;
+   const { travels, reservations = [], flash } = usePage().props;
    // Definimos un estado local "reservation" y una función "setReservation" para actualizarlo
     const [reservation, setReservation] = useState([]);
     // Definimos una función para manejar la anulación de la reserva
@@ -26,6 +26,14 @@ function cancelReservation(travelId) {
             <FilterHeader></FilterHeader>
             <Container className="accesibilidad-texto">
                 <Row>
+                    {flash.message && (
+                        <div class="alert alert-success">{flash.message}</div>
+                    )}
+                    {flash.error && (
+                        <div class="alert alert-danger">
+                            {flash.error}
+                        </div>
+                    )}
                     <h1 className="m-5">VIAJES ENCONTRADOS</h1>
                     {travels.map((travel) => (
                         <Col
@@ -49,7 +57,7 @@ function cancelReservation(travelId) {
                                         Fecha: {travel.date}
                                     </span>
                                     <br />
-                                    <span> 
+                                    <span>
                                         <i
                                             className="bi bi-clock"
                                             title="Hora del viaje"
@@ -73,16 +81,19 @@ function cancelReservation(travelId) {
                                         Precio: {travel.price}
                                     </span>
                                     <br />
-                                    {reservation.includes(travel.id) ? (// Verifica si el ID del viaje actual está incluido en la lista de reservas
+                                    {reservation.includes(travel.id) ? ( // Verifica si el ID del viaje actual está incluido en la lista de reservas
                                         <Link
-                                        method="delete"
-                                        href={`/booking/${travel.id}`}
-                                        className="btn btn-danger mb-3 mt-3"
-                                        onClick={() => cancelReservation(travel.id)} // Llama la función cancelReservation en lugar de setReservation
-                                    >
-                                        Anular reserva
-                                    </Link>
-                                    ) : (// Si el viaje no está reservado
+                                            method="delete"
+                                            href={`/booking/${travel.id}`}
+                                            className="btn btn-danger mb-3 mt-3"
+                                            onClick={() =>
+                                                cancelReservation(travel.id)
+                                            } // Llama la función cancelReservation en lugar de setReservation
+                                        >
+                                            Anular reserva
+                                        </Link>
+                                    ) : (
+                                        // Si el viaje no está reservado
                                         <Link
                                             method="post"
                                             href={"/booking/" + travel.id}
@@ -94,7 +105,7 @@ function cancelReservation(travelId) {
                                                 onClick={() => {
                                                     setReservation([
                                                         ...reservation,
-                                                        travel.id,// Agrega el ID del viaje actual a la lista de reservas
+                                                        travel.id, // Agrega el ID del viaje actual a la lista de reservas
                                                     ]);
                                                 }}
                                             >
