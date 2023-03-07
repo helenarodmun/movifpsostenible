@@ -11,6 +11,10 @@ export default function Search() {
    const { travels, reservations = [] } = usePage().props;
    // Definimos un estado local "reservation" y una función "setReservation" para actualizarlo
     const [reservation, setReservation] = useState([]);
+    // Definimos una función para manejar la anulación de la reserva
+function cancelReservation(travelId) {
+    setReservation(reservation.filter((id) => id !== travelId));
+}
     // Definimos una función "myDate" que formatea una fecha y hora utilizando la librería dayjs
     function myDate(fechaHora) {
         return dayjs(fechaHora).format("DD MMMM YYYY - HH:mm:ss");
@@ -72,8 +76,9 @@ export default function Search() {
                                     {reservation.includes(travel.id) ? (// Verifica si el ID del viaje actual está incluido en la lista de reservas
                                         <Link
                                         method="delete"
-                                        href={`/booking/${travel.id}`}// Define la URL para cancelar la reserva
+                                        href={`/booking/${travel.id}`}
                                         className="btn btn-danger mb-3 mt-3"
+                                        onClick={() => cancelReservation(travel.id)} // Llama la función cancelReservation en lugar de setReservation
                                     >
                                         Anular reserva
                                     </Link>

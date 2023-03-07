@@ -32,11 +32,10 @@ class TravelUserController extends Controller
         // Obtener la lista actualizada de viajes y pasarla a la vista
         $travels = Travel::with('driver')->orderBy('updated_at', 'DESC')->get();
         //Auth::user() devuelve el modelo de usuario autenticado actualmente.
-        //Auth::user()->travelUsers devuelve una colección de modelos TravelUser relacionados con el usuario actualmente autenticado, o null si no hay ninguna relación.
-        //El operador ternario ? : se utiliza para verificar si la colección de modelos es null o no. Si no es null,es decir, el usuario tiene  una reserva,
+        //Auth::user()->travelUsers devuelve una colección de modelos TravelUser relacionados con el usuario actualmente autenticado, o null si no hay ninguna relación.       
         // se llama al método pluck() para extraer los IDs de viaje de los modelos de TravelUser, y se convierte el resultado a un array. Si  es null, se asigna un array vacio para que no de error en la vista vacío.
-
-        $reservations = Auth::user()->travelUsers ? Auth::user()->travelUsers->pluck('travel_id')->toArray() : [];
+         // Actualizar la lista de reservas del usuario
+        $reservations = Auth::user()->travelUsers->pluck('travel_id')->toArray();
 
         return Inertia::render('Travels/Search', [
             'travels' => $travels,
@@ -46,8 +45,8 @@ class TravelUserController extends Controller
 
     public function destroy($id)
     {
-        
-        $travelUser = TravelUser::where('travel_id', $id)->first();
+
+        $travelUser = TravelUser::where('user_id', Auth::user()->id)->where('travel_id', $id)->first();
         $travel = Travel::find($travelUser->travel_id);
 
         // Aumentamos en uno el número de asientos disponibles
