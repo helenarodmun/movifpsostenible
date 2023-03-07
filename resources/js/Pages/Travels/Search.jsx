@@ -8,7 +8,7 @@ import { Link } from "@inertiajs/react";
 
 export default function Search() {
     //Desestructuramos las propiedades "travels" y "reservations" de las propiedades de la página
-    const { travels, reservations = [], flash } = usePage().props;
+    const { travels, reservations = [], flash, auth } = usePage().props;
     // Definimos un estado local "reservation" y una función "setReservation" para actualizarlo
     const [reservation, setReservation] = useState([]);
     // Definimos una función para manejar la anulación de la reserva
@@ -19,6 +19,16 @@ export default function Search() {
     function myDate(fechaHora) {
         return dayjs(fechaHora).format("DD MMMM YYYY - HH:mm:ss");
     }
+    function button(travelId) {
+        const v = travels.find((travel) => travel.id === travelId);
+    //    console.log(v.user_id,auth.user.id); 
+       if(v.user_id == auth.user.id){
+        return true;
+       }else{
+        return false;
+       }
+    }
+  
 
     return (
         <>
@@ -99,8 +109,7 @@ export default function Search() {
                                         Precio: {travel.price}
                                     </span>
                                     <br />
-                                    {reservation.includes(travel.id) ? (// Verifica si el ID del viaje actual está incluido en la lista de reservas
-                                     
+                                    {reservation.includes(travel.id) ? ( // Verifica si el ID del viaje actual está incluido en la lista de reservas
                                         <Link
                                             method="delete"
                                             href={`/booking/${travel.id}`}
@@ -108,29 +117,29 @@ export default function Search() {
                                             onClick={() =>
                                                 cancelReservation(travel.id)
                                             } // Llama la función cancelReservation en lugar de setReservation
+                                         
                                         >
                                             Anular reserva
                                         </Link>
                                     ) : (
                                         // Si el viaje no está reservado
-                                        <Link
+
+                                        <Button
                                             method="post"
                                             href={"/booking/" + travel.id}
+                                            size="lg"
+                                            variant="success"
+                                            className="shadow mb-3 mt-3"
+                                            disabled={button(travel.id)}
+                                            onClick={() => {
+                                                setReservation([
+                                                    ...reservation,
+                                                    travel.id, // Agrega el ID del viaje actual a la lista de reservas
+                                                ]);
+                                            }}
                                         >
-                                            <Button
-                                                size="lg"
-                                                variant="success"
-                                                className="shadow mb-3 mt-3"
-                                                onClick={() => {
-                                                    setReservation([
-                                                        ...reservation,
-                                                        travel.id, // Agrega el ID del viaje actual a la lista de reservas
-                                                    ]);
-                                                }}
-                                            >
-                                                Reserva tu viaje!
-                                            </Button>
-                                        </Link>
+                                            Reserva tu viaje!
+                                        </Button>
                                     )}
                                 </Card.Body>
                                 <Card.Footer className="text-muted">
