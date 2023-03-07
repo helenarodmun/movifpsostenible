@@ -147,7 +147,7 @@ export default function Index({children}) {
                                                 setData("seats", e.target.value)
                                             }
                                         >
-                                            <option disabled>
+                                            <option>
                                                 Escoja el número de asientos ...
                                             </option>
                                             <option value="1">1</option>
