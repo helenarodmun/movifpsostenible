@@ -15,12 +15,12 @@ class TravelForm extends FormRequest
 {
     // Define las reglas de validación para cada campo del formulario.
     return [
-        'origin' => 'nullable', // El campo de origen es opcional.
-        'destination' => 'nullable', // El campo de destino es opcional.
-        'date'=> 'nullable|after_or_equal:date', // El campo de fecha es opcional y debe ser posterior o igual a la fecha actual.
-        'hour' => 'nullable', // El campo de hora es opcional.
-        'seats' => 'nullable|digits_between:0,6', // El campo de asientos es opcional y debe ser un número con un máximo de 6 dígitos.
-        'price' => 'nullable', // El campo de precio es opcional.
+        'origin' => 'required|string', // El campo de origen es opcional.
+        'destination' => 'required|string', // El campo de destino es opcional.
+        'date'=> 'required|date', // El campo de fecha es opcional y debe ser posterior o igual a la fecha actual.
+        'hour' => 'required', // El campo de hora es opcional.
+        'seats' => 'required|digits_between:0,6', // El campo de asientos es opcional y debe ser un número con un máximo de 6 dígitos.
+        'price' => 'required', // El campo de precio es opcional.
     ];
 }
 

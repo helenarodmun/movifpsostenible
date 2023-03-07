@@ -40,15 +40,6 @@ export default function Index() {
                                         Precio: {travel.price}
                                     </span>
                                     <br/>
-                                         <Link 
-                                        method="post"
-                                        href={"/booking/"+travel.id}>
-                                          <Button
-                                          bsStyle="primary"size='lg'
-                                            variant="success"
-                                            className="mb-3 mt-3 shadow" >Reserva tu viaje! 
-                                            </Button> 
-                                        </Link>
                                 </Card.Body>
                                 <Card.Footer className="text-muted">
                                 <i className="bi bi-person-circle pe-3" title="Conductor"></i>

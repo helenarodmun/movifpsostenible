@@ -53,8 +53,12 @@ class TravelUserController extends Controller
                     'reservations' => $reservations,
                 ]);
             } else {
+                if ($travel->driver->id == $id){
                 // dd($travel->driver->id,$id);
                 Session::flash('error', 'No puedes reservar tu viaje');
+                }if( $travel->seats == 0){
+                    Session::flash('error', 'No hay asientos disponibles');
+                }
             return back();
         }
     }
