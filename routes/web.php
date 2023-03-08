@@ -54,3 +54,4 @@ Route::delete('/deletetravel/{id}', [TravelController::class, 'destroy'])->middl
 Route::get('/booking/{id}', [TravelUserController::class, 'store'])->middleware('auth');
 Route::post('/booking/{id}', [TravelUserController::class, 'store'])->middleware('auth');
 Route::delete('/booking/{id}', [TravelUserController::class, 'destroy'])->middleware('auth');
+

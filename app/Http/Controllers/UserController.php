@@ -20,8 +20,7 @@ class UserController extends Controller
         if ($user->id != Auth::id()) {
             Session::flash('edit', 'No puedes editar este perfil');
             return redirect()
-                ->back()
-                ->with('error', 'No tienes permisos para editar este perfil.');
+                ->back();
         }
 
         // Retorna la vista Inertia "User/EditProfile" con la información del usuario.
@@ -46,7 +45,7 @@ class UserController extends Controller
         // Carga de nuevo el objeto de usuario para asegurarse de que se estén devolviendo los datos más actualizados.
         $user->get();
         // Redirige al perfil del usuario actualizado con un mensaje de éxito.
-        Session::flash('edit', 'Se ha editado correctamente');
+        Session::flash('edit', 'Tu perfil se ha actualizado correctamente');
         return Inertia::render('Profile/Index', ['users' => $user]);
     }
 
