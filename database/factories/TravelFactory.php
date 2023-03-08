@@ -24,6 +24,7 @@ class TravelFactory extends Factory
             'date' => $this->faker->date,
             'hour' => $this->faker->time,
             'seats' => $this->faker->randomElement($array = array (1, 2, 3, 4, 5, 6)),
+            'price'=> $this->faker->randomDigitNotZero(),
             'user_id' => \App\Models\User::all()->random()->id
         ];
     }
