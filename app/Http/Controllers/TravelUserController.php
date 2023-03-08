@@ -47,7 +47,7 @@ class TravelUserController extends Controller
                 ->travelUsers->pluck('travel_id')
                 ->toArray();
 
-                Session::flash('message', 'Se ha completado su reserva');
+                Session::flash('message', 'Se ha completado su reserva, recibirás un correo de confirmación');
                 return Inertia::render('Travels/Search', [
                     'travels' => $travels,
                     'reservations' => $reservations,
@@ -55,9 +55,9 @@ class TravelUserController extends Controller
             } else {
                 if ($travel->driver->id == $id){
                 // dd($travel->driver->id,$id);
-                Session::flash('error', 'No puedes reservar tu viaje');
+                Session::flash('error', '¡ERROR! No puedes reservar tu viaje');
                 }if( $travel->seats == 0){
-                    Session::flash('error', 'No hay asientos disponibles');
+                    Session::flash('error', 'Lo sentimos, no hay asientos disponibles');
                 }
             return back();
         }

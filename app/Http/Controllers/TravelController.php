@@ -39,7 +39,7 @@ class TravelController extends Controller
         $travels = Travel::with('driver')
             ->latest()
             ->get();
-        Session::flash('viaje', 'Tu viaje a sido correctamente');
+        Session::flash('viaje', 'Tu viaje a sido publicado correctamente');
         return Inertia::render('Travels/Index', ['travels' => $travels]);
     }
 
@@ -122,7 +122,7 @@ class TravelController extends Controller
         // Recupera todos los viajes del usuario después de guardar el viaje actualizado.
         $travels = Auth::user()->travels;
         // Redirige al perfil del usuario actualizado.
-        Session::flash('edit', 'Se ha editado correctamente');
+        Session::flash('edit', 'Se ha actualizado tú viaje');
 
         return Inertia::render('Profile/MyTravels', ['travels' => $travels]);
     }
@@ -136,7 +136,7 @@ class TravelController extends Controller
         // Recupera todos los viajes del usuario después de guardar el viaje actualizado.
         $travels = Auth::user()->travels;
         // Redirige al perfil del usuario actualizado con una lista actualizada de sus viajes.
-        Session::flash('edit','El viaje ha sido borrado correctamente');
+        Session::flash('edit','El viaje ha sido borrado');
         return Inertia::render('Profile/MyTravels', ['travels' => $travels]);
     }
 }

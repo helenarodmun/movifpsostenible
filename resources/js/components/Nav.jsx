@@ -71,7 +71,9 @@ function NavBar() {
                                     Mis viajes
                                 </Link>
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#" className="bi bi-chat">
+                            <NavDropdown.Item 
+                                href="/chatify" 
+                                className="bi bi-chat">
                                 Mensajes
                             </NavDropdown.Item>
                             <NavDropdown.Item

@@ -95,4 +95,16 @@ Instala el paquete de Inertia. Si obtienes algún error por problemas de version
 
 - Controlador que permite enviar correo a trevés de servidores SMTP
 
+## Implementación de servicio de chat (https://chatify.munafio.com/installation)
+
+- se necesita las credenciales de Pusher Account para añadirlas al archivo .env
+
+`composer require munafio/chatify`
+- Instala paquete en el proyecto
+
+`php artisan chatify:install`
+- configura el servicio de chat
+
+`php artisan migrate`
+- migración de las tablas que necesita el paquete
 
